@@ -1,14 +1,14 @@
 package com.example.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 const val HINTACTIVITY_EXTRA_ANSWER = "HINTACTIVITY_EXTRA_ANSWER"
 
-class HintActivity : AppCompatActivity() {
+class Pista : AppCompatActivity() {
 
     private lateinit var answerText: TextView
     private lateinit var hintButton: Button
@@ -29,7 +29,7 @@ class HintActivity : AppCompatActivity() {
 
             val intent = Intent()
             intent.putExtra(HINTACTIVITY_EXTRA_ANSWER ,if (answer) "VERDADERO" else "FALSO")
-            setResult(RESULT_OK, intent)
+            setResult(AppCompatActivity.RESULT_OK, intent)
         }
     }
 }
