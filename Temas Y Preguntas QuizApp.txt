@@ -1,0 +1,306 @@
+Temas: [Musica, Deportes, Ciencias, Videojuegos, Historia]
+
+Música:
+1. ¿Quién es conocido como "El Rey del Pop"?
+   a) Justin Bieber
+   b) Elvis Presley
+   c) Michael Jackson (Respuesta correcta)
+   d) Madonna
+
+2. ¿Cuál de los siguientes géneros musicales se originó en Jamaica?
+   a) Country
+   b) Reggae (Respuesta correcta)
+   c) Flamenco
+   d) Jazz
+
+3. ¿Qué instrumento toca el famoso músico Eric Clapton?
+   a) Saxofón
+   b) Guitarra (Respuesta correcta)
+   c) Batería
+   d) Piano
+
+4. ¿Cuál de las siguientes canciones es de la banda británica The Beatles?
+   a) "Bohemian Rhapsody"
+   b) "Let It Be" (Respuesta correcta)
+   c) "Stairway to Heaven"
+   d) "Sweet Child o' Mine"
+
+5. ¿Quién es la vocalista principal de la banda Paramore?
+   a) Taylor Swift
+   b) Hayley Williams (Respuesta correcta)
+   c) Adele
+   d) Shakira
+
+6. ¿En qué década se lanzó el álbum icónico "Thriller" de Michael Jackson?
+   a) 1970s
+   b) 1980s (Respuesta correcta)
+   c) 1990s
+   d) 2000s
+
+7. ¿Cuál de las siguientes canciones es de la banda Queen?
+   a) "Livin' on a Prayer"
+   b) "Bohemian Rhapsody" (Respuesta correcta)
+   c) "Don't Stop Believin'"
+   d) "Sweet Child o' Mine"
+
+8. ¿Qué género musical se asocia comúnmente con artistas como Miles Davis y John Coltrane?
+   a) Rock
+   b) Jazz (Respuesta correcta)
+   c) Rap
+   d) Pop
+
+9. ¿Quién es conocido como "El Padrino del Soul"?
+   a) James Brown (Respuesta correcta)
+   b) Marvin Gaye
+   c) Ray Charles
+   d) Otis Redding
+
+10. ¿Cuál es el nombre del álbum más vendido de todos los tiempos?
+    a) "Dark Side of the Moon"
+    b) "Thriller"
+    c) "The Eagles: Their Greatest Hits 1971-1975" (Respuesta correcta)
+    d) "Back in Black"
+
+Deportes:
+1. ¿Cuál es el deporte que se juega en un campo rectangular con dos equipos de once jugadores cada uno, y el objetivo es marcar goles en la portería del equipo contrario?
+   a) Rugby
+   b) Fútbol (Respuesta correcta)
+   c) Baloncesto
+   d) Golf
+
+2. ¿Quién es considerado el mejor jugador de baloncesto de todos los tiempos?
+   a) LeBron James
+   b) Kobe Bryant
+   c) Michael Jordan (Respuesta correcta)
+   d) Magic Johnson
+
+3. ¿En qué deporte se utiliza una pista ovalada y los competidores corren en sentido contrario a las agujas del reloj?
+   a) Ciclismo
+   b) Atletismo
+   c) Carreras de autos (Respuesta correcta)
+   d) Patinaje sobre hielo
+
+4. ¿Cuál es el deporte en el que se lanzan discos a una diana circular para sumar puntos?
+   a) Tiro con arco
+   b) Dardos (Respuesta correcta)
+   c) Curling
+   d) Bádminton
+
+5. ¿Qué equipo de fútbol es conocido como "Los Diablos Rojos"?
+   a) FC Barcelona
+   b) AC Milan
+   c) Manchester United (Respuesta correcta)
+   d) Bayern de Múnich
+
+6. ¿Cuál es el último evento de un triatlón estándar?
+   a) Natación
+   b) Ciclismo
+   c) Carrera a pie (Respuesta correcta)
+   d) Patinaje artístico
+
+7. ¿En qué deporte se utiliza un bate para golpear una pelota lanzada por un lanzador hacia el campo de juego?
+   a) Tenis
+   b) Cricket
+   c) Béisbol (Respuesta correcta)
+   d) Golf
+
+8. ¿Cuántos jugadores hay en un equipo de voleibol en la cancha al mismo tiempo?
+   a) 5
+   b) 6 (Respuesta correcta)
+   c) 7
+   d) 8
+
+9. ¿Cuál es el evento principal en los Juegos Olímpicos de Invierno que combina esquí, tiro y resistencia física?
+   a) Salto de esquí
+   b) Biatlón (Respuesta correcta)
+   c) Patinaje de velocidad
+   d) Curling
+
+10. ¿En qué deporte se compite por el control de un puck utilizando palos y patines en una pista de hielo?
+    a) Hockey sobre césped
+    b) Hockey sobre hielo (Respuesta correcta)
+    c) Polo acuático
+    d) Rugby
+
+Ciencias:
+1. ¿Cuál es la unidad básica de la vida en los seres vivos?
+   a) Célula (Respuesta correcta)
+   b) Molécula
+   c) Átomo
+   d) Gen
+
+2. ¿Cuál es el planeta más grande de nuestro sistema solar?
+   a) Tierra
+   b) Júpiter (Respuesta correcta)
+   c) Venus
+   d) Marte
+
+3. ¿Qué gas es esencial para la fotosíntesis de las plantas?
+   a) Oxígeno
+   b) Dióxido de carbono (Respuesta correcta)
+   c) Hidrógeno
+   d) Nitrógeno
+
+4. ¿Cuál es la fórmula química del agua?
+   a) H2O2
+   b) CO2
+   c) H2O (Respuesta correcta)
+   d) CH4
+
+5. ¿Qué tipo de energía se libera en el sol mediante reacciones nucleares?
+   a) Térmica
+   b) Solar (Respuesta correcta)
+   c) Cinética
+   d) Eléctrica
+
+6. ¿Cuál es la capa más externa de la Tierra?
+   a) Núcleo
+   b) Manto
+   c) Corteza (Respuesta correcta)
+   d) Núcleo interno
+
+7. ¿Cuál es el proceso mediante el cual las plantas convierten la luz solar en energía química?
+   a) Respiración
+   b) Fotosíntesis (Respuesta correcta)
+   c) Transpiración
+   d) Fermentación
+
+8. ¿Qué componente del sistema solar es conocido como "el planeta rojo"?
+   a) Júpiter
+   b) Saturno
+   c) Marte (Respuesta correcta)
+   d) Venus
+
+9. ¿Cuál es el elemento más abundante en la corteza terrestre?
+   a) Hierro
+   b) Oxígeno (Respuesta correcta)
+   c) Silicio
+   d) Aluminio
+
+10. ¿Cuál es la unidad básica de la herencia genética?
+    a) Proteína
+    b) Enzima
+    c) Ácido ribonucleico (ARN)
+    d) Ácido desoxirribonucleico (ADN) (Respuesta correcta)
+
+Videojuegos:
+1. En el juego "Super Mario Bros.", ¿cuál es el nombre del personaje principal que debe rescatar a la princesa Peach?
+   a) Luigi
+   b) Bowser
+   c) Toad
+   d) Mario (Respuesta correcta)
+
+2. ¿Cuál de los siguientes juegos es conocido por su modo battle royale en el que 100 jugadores compiten hasta que solo queda uno en pie?
+   a) Call of Duty: Modern Warfare
+   b) Apex Legends
+   c) Fortnite (Respuesta correcta)
+   d) Overwatch
+
+3. ¿Cuál es el nombre del fontanero protagonista en la serie de juegos "The Legend of Zelda"?
+   a) Ganondorf
+   b) Link (Respuesta correcta)
+   c) Zelda
+   d) Sheik
+
+4. ¿En qué juego de rol puedes encontrar personajes como Aerith, Cloud y Sephiroth?
+   a) Final Fantasy VII (Respuesta correcta)
+   b) Dragon Quest
+   c) Kingdom Hearts
+   d) Persona 5
+
+5. ¿Cuál es el título del juego que introdujo por primera vez al icónico personaje de Lara Croft?
+   a) Tomb Raider (Respuesta correcta)
+   b) Uncharted
+   c) Assassin's Creed
+   d) Prince of Persia: The Sands of Time
+
+6. ¿Qué juego popular de construcción y supervivencia tiene un modo llamado "Battle Royale" y fue creado por Epic Games?
+   a) Minecraft
+   b) Fortnite (Respuesta correcta)
+   c) Roblox
+   d) Terraria
+
+7. ¿Cuál es el nombre del protagonista en la saga de juegos "The Witcher"?
+   a) Geralt of Rivia (Respuesta correcta)
+   b) Arthas Menethil
+   c) Ezio Auditore
+   d) Joel Miller
+
+8. ¿En qué juego de plataformas el personaje principal es un fontanero que debe salvar a la princesa Peach del malvado Bowser?
+   a) Sonic the Hedgehog
+   b) Donkey Kong
+   c) Super Mario Bros. (Respuesta correcta)
+   d) Mega Man
+
+9. ¿Cuál es el título del juego que involucra viajes en el tiempo, un DeLorean y referencias a la cultura de los años 80?
+   a) Cyberpunk 2077
+   b) Ready Player One: The Oasis
+   c) Back to the Future: The Game (Respuesta correcta)
+   d) TimeSplitters
+
+10. ¿En qué juego de estrategia en tiempo real puedes controlar civilizaciones a lo largo de la historia, desde la antigüedad hasta la era moderna?
+    a) Age of Empires (Respuesta correcta)
+    b) Civilization VI
+    c) StarCraft
+    d) Command & Conquer
+
+Historia:
+¿Qué líder histórico se dijo a sí mismo: "Cruzaré ese río cuando llegue a él"?
+    a) Napoleón Bonaparte
+    b) Julio César
+    c) George Washington (Respuesta correcta)
+    d) Alejandro Magno
+
+¿Cuál de estos eventos históricos ocurrió primero?
+    a) La Revolución Rusa
+    b) La Revolución Francesa (Respuesta correcta)
+    c) La Revolución Americana
+    d) La Revolución Industrial
+
+¿Cuál es el nombre del famoso explorador que, al descubrir América, dijo: "Creo que me equivoqué de camino"?
+    a) Cristóbal Colón (Respuesta correcta)
+    b) Marco Polo
+    c) Magallanes
+    d) Hernán Cortés
+
+¿Cuál es el evento histórico conocido por la famosa frase: "¡Que coman pasteles!"?
+    a) La Revolución Industrial
+    b) La Revolución Rusa
+    c) La Revolución Francesa (Respuesta correcta)
+    d) La Revolución Americana
+
+¿Quién pronunció la frase: "La única cosa que tenemos que temer es el miedo mismo"?
+    a) Winston Churchill
+    b) Franklin D. Roosevelt (Respuesta correcta)
+    c) Abraham Lincoln
+    d) John F. Kennedy
+
+¿Qué líder militar y político francés es conocido por ser de baja estatura y por su complejo de inferioridad?
+    a) Napoleón Bonaparte (Respuesta correcta)
+    b) Charles de Gaulle
+    c) Luis XIV
+    d) Robespierre
+
+¿En qué año comenzó la Primera Guerra Mundial?
+    a) 1914 (Respuesta correcta)
+    b) 1918
+    c) 1920
+    d) 1939
+
+¿Cuál de las siguientes figuras históricas es conocida por cruzar los Alpes con elefantes en la Segunda Guerra Púnica?
+    a) Julio César
+    b) Aníbal Barca (Respuesta correcta)
+    c) Alejandro Magno
+    d) Carlomagno
+
+¿Qué país fue gobernado por el zar Nicolás II hasta la Revolución Rusa de 1917?
+    a) Alemania
+    b) Rusia (Respuesta correcta)
+    c) Francia
+    d) Italia
+
+¿Cuál de los siguientes eventos históricos involucró la famosa "Carrera Espacial"?
+    a) Guerra Fría (Respuesta correcta)
+    b) Revolución Industrial
+    c) Renacimiento
+    d) Edad Media
