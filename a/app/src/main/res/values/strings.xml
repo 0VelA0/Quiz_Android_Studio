@@ -6,4 +6,12 @@
     <string name="correct_text">Correcto</string>
     <string name="incorrect_text">Incorrecto</string>
     <string name="prev_button">Anterior</string>
+    <string name="hint_button">Use Hint</string>
+    <string name="score_img">ImagendelScore</string>
+    <string name="really_bad_score_text">Te fue muy mal wey</string>
+    <string name="bad_score_text">Puedes Mejorar</string>
+    <string name="good_score_string">Muy Bien!</string>
+    <string name="great_score_string">Excelente!</string>
+    <string name="result_text">Resultado final:</string>
+    <string name="again_button">Jugar de nuevo?</string>
 </resources>
