@@ -22,6 +22,7 @@ class Activity1 : AppCompatActivity() {
         setContentView(R.layout.activity_1)
 
         val items = listOf("Facil", "Normal", "Dificil")
+        var selectedItem = "Facil"
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
@@ -31,6 +32,7 @@ class Activity1 : AppCompatActivity() {
 
         jugar.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("dificultad", selectedItem)
             startActivity(intent)
         }
         opciones.setOnClickListener{
@@ -47,12 +49,11 @@ class Activity1 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val selectedItem = items[position]
-                //Mandar el item seleccionado como dificultad
+                selectedItem = items[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                //Mandar por default la dificultad normal
+                selectedItem = "Facil"
             }
         }
 

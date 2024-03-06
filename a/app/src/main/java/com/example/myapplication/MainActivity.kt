@@ -14,6 +14,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 
 class MainActivity : AppCompatActivity() {
 
+    private val dificulty = intent.getStringExtra("dificultad")
+
     private val SCORE_EXTRA = 50 //cuando ya haya una funcion para calcular el score reemplaza con "SCORE_EXTRA"
     private val HINTACTIVITY_REQUEST_CODE = 0
 

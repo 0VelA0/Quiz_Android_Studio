@@ -5,19 +5,79 @@ class Preguntas : ViewModel() {
     private var preguntaactual = 0
 
     private val preguntas = listOf<Pregunta>(
-        Pregunta("¿La luna es de queso?", true),
-        Pregunta("¿La luna es de hueso?", false),
-        Pregunta("¿2 + 2 = 4?", true),
-        Pregunta("¿Si o no?", true),
-        Pregunta("¿Los hot dogs son reales?", true),
-        Pregunta("¿Te bañaste hoy?", false)
+        //musica
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Musica"),
+
+        //deportes
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Deporte"),
+
+        //ciencias
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Ciencia"),
+
+        //videojuegos
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Videojuegos"),
+
+        //historia
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
+        Pregunta("¿La luna es de queso?", "", arrayListOf("","",""), "Historia"),
     )
 
     val textoPreguntaActual: String
         get()= preguntas[preguntaactual].texto
 
-    val respuestaPreguntaActual: Boolean
-        get() = preguntas[preguntaactual].respuesta
+    val respuestaPreguntaActual: String
+        get() = preguntas[preguntaactual].respuestaCorrecta
+
+    val otrasRespuestas: ArrayList<String>
+        get() = preguntas[preguntaactual].respuestasIncorrectas
 
     var puntajeInterruptor: Boolean
         get() = preguntas[preguntaactual].resactivador ?: false

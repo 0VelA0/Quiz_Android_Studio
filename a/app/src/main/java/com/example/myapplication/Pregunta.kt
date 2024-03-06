@@ -1,3 +1,3 @@
 package com.example.myapplication
 
-data class Pregunta(val texto: String, val respuesta: Boolean, var resactivador: Boolean=false)
+data class Pregunta(val texto: String, val respuestaCorrecta: String, val respuestasIncorrectas: ArrayList<String>, val Categoria: String,var resactivador: Boolean=false)
