@@ -14,4 +14,7 @@
     <string name="great_score_string">Excelente!</string>
     <string name="result_text">Resultado final:</string>
     <string name="again_button">Jugar de nuevo?</string>
+    <string name="jugar">Jugar</string>
+    <string name="opciones">Opciones</string>
+    <string name="trabajo_en_proceso">Trabajo en proceso</string>
 </resources>

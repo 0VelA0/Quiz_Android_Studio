@@ -12,7 +12,6 @@ import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 
-
 class MainActivity : AppCompatActivity() {
 
     private val SCORE_EXTRA = 50 //cuando ya haya una funcion para calcular el score reemplaza con "SCORE_EXTRA"
