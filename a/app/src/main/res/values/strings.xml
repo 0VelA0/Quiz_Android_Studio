@@ -7,4 +7,5 @@
     <string name="incorrect_text">Incorrecto</string>
     <string name="prev_button">Anterior</string>
     <string name="hint_button">Use Hint</string>
+    <string name="score_img">ImagendelScore</string>
 </resources>
