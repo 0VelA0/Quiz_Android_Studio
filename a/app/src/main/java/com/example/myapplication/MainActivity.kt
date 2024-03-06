@@ -1,12 +1,21 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
+import com.google.android.material.snackbar.Snackbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 
 class MainActivity : AppCompatActivity() {
+
+    private val SCORE_EXTRA = 50 //cuando ya haya una funcion para calcular el score reemplaza con "SCORE_EXTRA"
+    private val HINTACTIVITY_REQUEST_CODE = 0
 
     private lateinit var preguntatexto: TextView
     private lateinit var puntajefinal: TextView
@@ -14,20 +23,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var noButton: Button
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
+    private lateinit var testButton: Button
 
     private val model: Preguntas by viewModels()
     private var puntaje = 0
 
-    private fun showSnackbar(message: String){
+    private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
         val snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_INDEFINITE)
-        snackbar.setAction("Death", View.OnclickListener {})
+        snackbar.setAction("Death", View.OnClickListener {})
         snackbar.show()
     }
 
     private fun revisarRespuesta(userAnswer: Boolean) {
         val isCorrect = userAnswer == model.respuestaPreguntaActual
-        score += if (isCorrect) 1 else 0
+        puntaje += if (isCorrect) 1 else 0
 
         val message = if (isCorrect) "Respuesta correcta" else "Respuesta incorrecta"
         mostrarPuntajeTotal()
@@ -35,8 +45,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mostrarPuntajeTotal() {
-        val totalScoreMessage = "Total Score: $score"
-        finalScore.text = totalScoreMessage
+        val totalScoreMessage = "Total Score: $puntaje"
+        puntajefinal.text = totalScoreMessage
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,18 +58,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        questionText = findViewById(R.id.pregunta)
+        preguntatexto = findViewById(R.id.pregunta)
         yesButton = findViewById(R.id.boton_si)
         noButton = findViewById(R.id.boton_no)
         nextButton = findViewById(R.id.boton_siguiente)
         prevButton = findViewById(R.id.boton_anterior)
-        finalScore = findViewById(R.id.puntaje_total)
-
-        textoPregunta.text= model.textoPreguntaActual
+        puntajefinal = findViewById(R.id.puntaje_total)
+        testButton = findViewById(R.id.test_act)
+        preguntatexto.text = model.textoPreguntaActual
 
         yesButton.setOnClickListener { _ ->
             if (!model.puntajeInterruptor) {
-                checkAnswer(true)
+                revisarRespuesta(true)
                 model.puntajeInterruptor = true
             } else {
                 Toast.makeText(this, "Ya has respondido esta pregunta", Toast.LENGTH_SHORT).show()
@@ -70,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
         noButton.setOnClickListener { _ ->
             if (!model.puntajeInterruptor) {
-                checkAnswer(false)
+                revisarRespuesta(false)
                 model.puntajeInterruptor = true
             } else {
                 Toast.makeText(this, "Ya has respondido esta pregunta", Toast.LENGTH_SHORT).show()
@@ -82,26 +92,36 @@ class MainActivity : AppCompatActivity() {
 
         nextButton.setOnClickListener { _ ->
             model.siguientePregunta()
-            questionText.text = model.puntajeInterruptor
+            preguntatexto.text = model.textoPreguntaActual
             nextButton.visibility = View.INVISIBLE
             prevButton.visibility = View.INVISIBLE
         }
         prevButton.setOnClickListener { _ ->
             model.anteriorPregunta()
-            questionText.text = model.textoPreguntaActual
+            preguntatexto.text = model.textoPreguntaActual
             prevButton.visibility = View.INVISIBLE
             nextButton.visibility = View.INVISIBLE
         }
 
 
-        questionText.setOnClickListener { _ ->
-            val intent = Intent(this, HintActivity::class.java)
+        preguntatexto.setOnClickListener { _ ->
+            val intent = Intent(this, Pista::class.java)
             intent.putExtra(HINTACTIVITY_EXTRA_ANSWER, model.respuestaPreguntaActual)
             startActivityForResult(intent, HINTACTIVITY_REQUEST_CODE)
         }
-    }
 
-    override fun oAnctivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+
+        // Este codigo es un test para cambiar entre activities pueden borrarlo si no lo necesitan
+        testButton.setOnClickListener {
+            val intent = Intent(this, Resultados::class.java)
+            //intent.putExtra("SCORE_EXTRA", funcioncalcularscore()) //que esta funcion que crees retorne un valor
+            intent.putExtra("SCORE_EXTRA", 100) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
+            startActivity(intent)
+        }
+   }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             HINTACTIVITY_REQUEST_CODE ->
@@ -146,3 +166,5 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Log.d("QUIZAPP_DEBUG", "onDestroy()...")
     }
+}
+
