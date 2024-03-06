@@ -14,6 +14,7 @@ class Resultados : AppCompatActivity() {
     private lateinit var imgScore: ImageView
     private lateinit var scoreMessage: TextView
     private lateinit var startAgainButton: Button
+    private var score: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
@@ -24,27 +25,31 @@ class Resultados : AppCompatActivity() {
         scoreMessage = findViewById(R.id.score_message)
         startAgainButton = findViewById(R.id.start_again_button)
 
-        val score = intent.getIntExtra("SCORE_EXTRA", 0)
+        score = intent.getIntExtra("SCORE_EXTRA", 0)
+
+        if (savedInstanceState != null){
+            score = savedInstanceState.getInt("CURRENT_SCORE", 0)
+        }
 
         when (score) {
             in 0 until 50 -> {
                 imgScore.setImageResource(R.drawable.really_bad)
-                scoreMessage.text = "Te fue muy mal wey"
+                scoreMessage.text = getString(R.string.really_bad_score_text)
             }
 
             in 50 until 70 -> {
                 imgScore.setImageResource(R.drawable.bad)
-                scoreMessage.text = "Puedes Mejorar"
+                scoreMessage.text = getString(R.string.bad_score_text)
             }
 
             in 70 until 90 -> {
                 imgScore.setImageResource(R.drawable.good)
-                scoreMessage.text = "Muy Bien!"
+                scoreMessage.text = getString(R.string.good_score_string)
             }
 
             in 90..100 -> {
                 imgScore.setImageResource(R.drawable.really_good)
-                scoreMessage.text = "Excelente!"
+                scoreMessage.text = getString(R.string.great_score_string)
             }
         }
 
@@ -55,8 +60,17 @@ class Resultados : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
+
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("CURRENT_SCORE", score)
+        super.onSaveInstanceState(outState)
+    }
 }
+
+
 
 

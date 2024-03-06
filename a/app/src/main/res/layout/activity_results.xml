@@ -13,6 +13,7 @@
         android:gravity="center"
         android:textSize="28sp"
         android:layout_margin="20dp"
+        android:text="@string/result_text"
         tools:text="Resultado final:" />
 
     <TextView
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:layout_margin="20dp"
-        android:text="Jugar de nuevo?"
+        android:text="@string/again_button"
         />
 
 </LinearLayout>
