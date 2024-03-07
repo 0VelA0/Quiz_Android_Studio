@@ -17,7 +17,7 @@ class Activity1 : AppCompatActivity() {
     private lateinit var opciones: Button
     private lateinit var dificultad: Spinner
     private lateinit var image: ImageView
-
+    private var selectedItem: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -34,6 +34,10 @@ class Activity1 : AppCompatActivity() {
         image = findViewById(R.id.myImageView)
 
         image.setImageResource(R.drawable.quizlogo)
+
+        if (savedInstanceState != null){
+            selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
+        }
 
         jugar.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -65,30 +69,8 @@ class Activity1 : AppCompatActivity() {
 
 
     }
-
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("QUIZAPP_DEBUG", "onStart()...")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("QUIZAPP_DEBUG", "onResume()...")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("QUIZAPP_DEBUG", "onPause()...")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("QUIZAPP_DEBUG", "onStop()...")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("QUIZAPP_DEBUG", "onDestroy()...")
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("CURRENT_diff", selectedItem)
+        super.onSaveInstanceState(outState)
     }
 }

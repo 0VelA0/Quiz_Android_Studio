@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var streak_text: TextView
 
     private val model: Preguntas by viewModels()
-    private var puntaje = 0
-    private var answered = 0
-    private var total = 0
-    private var streak = 0
+    private var puntaje: Int = 0
+    private var answered: Int = 0
+    private var total: Int = 0
+    private var streak: Int = 0
     private var bonusGive = true
 
         private fun showSnackbar(message: String) {
@@ -253,10 +253,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
-        Log.d("QUIZAPP_DEBUG", "onCreate()...")
+        Log.d("QUIZAPP_DEBUG", "onCreate: savedInstanceState is ${if (savedInstanceState != null) "not" else ""} null")
+
         super.onCreate(savedInstanceState)
 
         total = model.totalPreguntas
+
 
         setContentView(R.layout.activity_main)
 
@@ -272,6 +274,7 @@ class MainActivity : AppCompatActivity() {
         preguntatexto.text = model.textoPreguntaActual
         hint_text = findViewById(R.id.hints)
         streak_text = findViewById(R.id.streak)
+
 
         randomizeQuestionOrder()
 
@@ -338,29 +341,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("QUIZAPP_DEBUG", "onStart()...")
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d("QUIZAPP_DEBUG", "onSaveInstanceState: saving state")
+        outState.putInt("REMAINING_HINTS", remainingHints)
+        outState.putString("DIFICULTY", dificulty)
+        outState.putInt("PUNTAJE", puntaje)
+        outState.putInt("ANSWERED", answered)
+        outState.putInt("TOTAL", total)
+        outState.putInt("STREAK", streak)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("QUIZAPP_DEBUG", "onResume()...")
-    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        remainingHints = savedInstanceState.getInt("REMAINING_HINTS")
+        dificulty = savedInstanceState.getString("DIFICULTY", "Normal")
+        puntaje = savedInstanceState.getInt("PUNTAJE")
+        answered = savedInstanceState.getInt("ANSWERED")
+        total = savedInstanceState.getInt("TOTAL")
+        streak = savedInstanceState.getInt("STREAK")
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("QUIZAPP_DEBUG", "onPause()...")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("QUIZAPP_DEBUG", "onStop()...")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("QUIZAPP_DEBUG", "onDestroy()...")
+        mostrarHints()
+        mostrarPuntajeTotal()
+        mostrarStreak()
     }
 }
 
