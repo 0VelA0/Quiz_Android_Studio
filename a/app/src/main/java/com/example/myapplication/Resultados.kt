@@ -32,22 +32,22 @@ class Resultados : AppCompatActivity() {
         }
 
         when (score) {
-            in 0 until 50 -> {
+            in 0 until 10 -> {
                 imgScore.setImageResource(R.drawable.really_bad)
                 scoreMessage.text = getString(R.string.really_bad_score_text)
             }
 
-            in 50 until 70 -> {
+            in 10 until 30 -> {
                 imgScore.setImageResource(R.drawable.bad)
                 scoreMessage.text = getString(R.string.bad_score_text)
             }
 
-            in 70 until 90 -> {
+            in 30 until 50 -> {
                 imgScore.setImageResource(R.drawable.good)
                 scoreMessage.text = getString(R.string.good_score_string)
             }
 
-            in 90..100 -> {
+            in 50..60 -> {
                 imgScore.setImageResource(R.drawable.really_good)
                 scoreMessage.text = getString(R.string.great_score_string)
             }

@@ -181,7 +181,13 @@ class MainActivity : AppCompatActivity() {
 
             if(b.text.toString() ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
-                puntaje += if (!bonusGive) 1 else 2
+                var difmod = 0
+                when(dificulty){
+                    "Facil"-> difmod = 1
+                    "Normal"-> difmod = 2
+                    "Dificil"-> difmod = 3
+                }
+                puntaje += if (!bonusGive) (1*difmod) else (2*difmod)
                 b.setBackgroundColor(Color.GREEN)
                 model.respondida = true
                 if(bonusGive){
