@@ -60,6 +60,12 @@ class Preguntas : ViewModel() {
             preguntasReales[preguntaactual].resactivador = value
         }
 
+    var respondida: Boolean
+        get() = preguntasReales[preguntaactual].respondedCorrectly ?: false
+        set(value) {
+            preguntasReales[preguntaactual].respondedCorrectly = value
+        }
+
     val totalPreguntas: Int
         get() = preguntasReales.size
 

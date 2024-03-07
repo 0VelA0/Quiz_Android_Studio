@@ -14,11 +14,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
     val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
+    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA") else "Dificil"
 
     private val HINTACTIVITY_REQUEST_CODE = 0
 
@@ -34,11 +35,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prevButton: Button
     private lateinit var hintButton: Button
     private lateinit var ImageView: Image
+    private lateinit var hint_text: TextView
+    private lateinit var streak_text: TextView
 
     private val model: Preguntas by viewModels()
     private var puntaje = 0
     private var answered = 0
     private var total = 0
+    private var streak = 0
+    private var bonusGive = true
 
         private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
@@ -72,7 +77,18 @@ class MainActivity : AppCompatActivity() {
         puntajefinal.text = totalScoreMessage
     }
 
+    private fun mostrarHints() {
+        val hintText = "Pistas restantes: $remainingHints"
+        hint_text.text = hintText
+    }
+
+    private fun mostrarStreak() {
+        val streakText = "Racha: $streak"
+        streak_text.text = streakText
+    }
+
     private fun randomizeQuestionOrder(){
+        bonusGive=true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
 
@@ -111,11 +127,11 @@ class MainActivity : AppCompatActivity() {
             Answer3.visibility = View.INVISIBLE
             Answer4.visibility = View.INVISIBLE
         }
-
     }
 
     private fun useHint(){
-        if(remainingHints > 0){
+        if(remainingHints > 0 && bonusGive){
+            bonusGive = false
             if(dificulty == "Facil"){
                 if(Answer1.text == model.respuestaPreguntaActual){
                     Answer1.setBackgroundColor(Color.GREEN)
@@ -136,11 +152,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else if(dificulty == "Dificil"){
-                if(Answer1.text == model.respuestaPreguntaActual){
-                    Answer1.setBackgroundColor(Color.GREEN)
+                if(Answer1.text != model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.RED)
                 }
-                else if(Answer2.text == model.respuestaPreguntaActual){
-                    Answer2.setBackgroundColor(Color.GREEN)
+                else if(Answer2.text != model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.RED)
                 }
                 else if(Answer3.text != model.respuestaPreguntaActual){
                     Answer3.setBackgroundColor(Color.RED)
@@ -149,20 +165,38 @@ class MainActivity : AppCompatActivity() {
                     Answer4.setBackgroundColor(Color.RED)
                 }
             }
+            remainingHints-=1
+            mostrarHints()
         }
-        else{
+        else if(bonusGive){
             Toast.makeText(this, "No te quedan hints", Toast.LENGTH_SHORT).show()
         }
+        else{
+            Toast.makeText(this, "Ya usaste una hint para esta pregunta", Toast.LENGTH_SHORT).show()
+        }
     }
-    private fun checkAnswer(answer: String){
+    private fun checkAnswer(b: Button){
         if (!model.puntajeInterruptor) {
 
-            if(answer ===  model.respuestaPreguntaActual){
+            if(b.text.toString() ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
                 puntaje += 2
+                b.setBackgroundColor(Color.GREEN)
+                model.respondida = true
+                if(bonusGive){
+                    streak+=1
+                    mostrarStreak()
+                    if(streak>=2){
+                        remainingHints+=1
+                        mostrarHints()
+                    }
+                }
             }
             else{
                 showSnackbar("Respuesta Incorrecta")
+                b.setBackgroundColor(Color.RED)
+                streak = 0
+                mostrarStreak()
             }
             answered+=1
             model.puntajeInterruptor = true
@@ -207,23 +241,25 @@ class MainActivity : AppCompatActivity() {
         puntajefinal = findViewById(R.id.puntaje_total)
         hintButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
+        hint_text = findViewById(R.id.hints)
+        streak_text = findViewById(R.id.streak)
 
 
 
         randomizeQuestionOrder()
 
         Answer1.setOnClickListener {
-            checkAnswer(Answer1.text.toString())
+            checkAnswer(Answer1)
         }
         Answer2.setOnClickListener {
-            checkAnswer(Answer2.text.toString())
+            checkAnswer(Answer2)
         }
 
         Answer3.setOnClickListener {
-            checkAnswer(Answer3.text.toString())
+            checkAnswer(Answer3)
         }
         Answer4.setOnClickListener {
-            checkAnswer(Answer4.text.toString())
+            checkAnswer(Answer4)
         }
 
         hintButton.setOnClickListener { _ ->

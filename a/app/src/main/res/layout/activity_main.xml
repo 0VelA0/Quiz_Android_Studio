@@ -18,8 +18,30 @@
             android:id="@+id/puntaje_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="10dp"
             android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="@string/score"
+            />
+
+        <TextView
+            android:id="@+id/hints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="@string/hints_text"
+            />
+
+        <TextView
+            android:id="@+id/streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="@string/streak"
             />
 
         <ImageView
@@ -95,7 +117,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/prev_button"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:visibility="invisible" />
 
             <Button
@@ -106,7 +128,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:text="@string/next_button"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:visibility="invisible"/>
         </LinearLayout>
 
