@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val model: Preguntas by viewModels()
     private var puntaje = 0
     private var answered = 0
-    private var total = model.totalPreguntas
+    private var total = 0
 
         private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
@@ -124,6 +124,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("QUIZAPP_DEBUG", "onCreate()...")
         super.onCreate(savedInstanceState)
+
+        total = model.totalPreguntas
 
         setContentView(R.layout.activity_main)
 
