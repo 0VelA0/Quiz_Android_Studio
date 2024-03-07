@@ -48,6 +48,9 @@ class Preguntas : ViewModel() {
     val respuestaPreguntaActual: String
         get() = preguntasReales[preguntaactual].respuestaCorrecta
 
+    val categoria: String
+        get() = preguntasReales[preguntaactual].Categoria
+
     val otrasRespuestas: ArrayList<String>
         get() = preguntasReales[preguntaactual].respuestasIncorrectas
 
