@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,9 +18,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 class MainActivity : AppCompatActivity() {
 
     val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Normal"
+    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
 
     private val HINTACTIVITY_REQUEST_CODE = 0
+
+    private var remainingHints = 5
 
     private lateinit var preguntatexto: TextView
     private lateinit var puntajefinal: TextView
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var Answer4: Button
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
-    private lateinit var testButton: Button
+    private lateinit var hintButton: Button
     private lateinit var ImageView: Image
 
     private val model: Preguntas by viewModels()
@@ -104,6 +107,47 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun useHint(){
+        if(remainingHints > 0){
+            if(dificulty == "Facil"){
+                if(Answer1.text == model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.GREEN)
+                }
+                else if(Answer2.text == model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.GREEN)
+                }
+            }
+            else if(dificulty == "Normal"){
+                if(Answer1.text != model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.RED)
+                }
+                else if(Answer2.text != model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.RED)
+                }
+                else if(Answer3.text != model.respuestaPreguntaActual){
+                    Answer3.setBackgroundColor(Color.RED)
+                }
+            }
+            else if(dificulty == "Dificil"){
+                if(Answer1.text == model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.GREEN)
+                }
+                else if(Answer2.text == model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.GREEN)
+                }
+                else if(Answer3.text != model.respuestaPreguntaActual){
+                    Answer3.setBackgroundColor(Color.RED)
+                }
+                else if(Answer4.text != model.respuestaPreguntaActual){
+                    Answer4.setBackgroundColor(Color.RED)
+                }
+            }
+        }
+        else{
+            Toast.makeText(this, "No te quedan hints", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun checkAnswer(answer: String){
         if (!model.puntajeInterruptor) {
 
@@ -155,7 +199,7 @@ class MainActivity : AppCompatActivity() {
         nextButton = findViewById(R.id.boton_siguiente)
         prevButton = findViewById(R.id.boton_anterior)
         puntajefinal = findViewById(R.id.puntaje_total)
-        testButton = findViewById(R.id.test_act)
+        hintButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
 
         configureImageByCategory(model.categoria)
@@ -176,6 +220,9 @@ class MainActivity : AppCompatActivity() {
             checkAnswer(Answer4.text.toString())
         }
 
+        hintButton.setOnClickListener { _ ->
+            useHint()
+        }
 
         nextButton.setOnClickListener { _ ->
             model.siguientePregunta()
