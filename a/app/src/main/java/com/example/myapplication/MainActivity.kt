@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
+        configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
 
         when(dificulty){
@@ -93,13 +94,18 @@ class MainActivity : AppCompatActivity() {
         totalRespuestas.shuffle()
         Answer1.text = totalRespuestas[0]
         Answer2.text = totalRespuestas[1]
+        Answer1.setBackgroundColor(Color.BLACK)
+        Answer2.setBackgroundColor(Color.BLACK)
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.visibility = View.INVISIBLE
 
         }else if(dificulty == "Dificil"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.text = totalRespuestas[3]
+            Answer4.setBackgroundColor(Color.BLACK)
         }
         else{
             Answer3.visibility = View.INVISIBLE
@@ -202,7 +208,7 @@ class MainActivity : AppCompatActivity() {
         hintButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
 
-        configureImageByCategory(model.categoria)
+
 
         randomizeQuestionOrder()
 
