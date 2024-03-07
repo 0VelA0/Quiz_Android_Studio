@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         if (answered == total){
             val intent = Intent(this, Resultados::class.java)
             intent.putExtra("SCORE_EXTRA", puntaje) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
+            intent.putExtra("DIFFICULTYMOD", if(dificulty == "Facil") 1 else if(dificulty == "Normal") 2 else 3) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
             startActivity(intent)
         }
         else{
