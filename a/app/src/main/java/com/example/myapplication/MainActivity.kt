@@ -1,11 +1,13 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
     private lateinit var testButton: Button
+    private lateinit var ImageView: Image
 
     private val model: Preguntas by viewModels()
     private var puntaje = 0
@@ -122,6 +125,20 @@ class MainActivity : AppCompatActivity() {
         prevButton.visibility = View.VISIBLE
     }
 
+    private fun configureImageByCategory(categoria: String) {
+        val imageCategoria = findViewById<ImageView>(R.id.imageCategoria)
+
+        when (categoria) {
+            "Musica" -> imageCategoria.setImageResource(R.drawable.imagen_musica)
+            "Deportes" -> imageCategoria.setImageResource(R.drawable.imagen_deportes)
+            "Ciencia" -> imageCategoria.setImageResource(R.drawable.imagen_ciencia)
+            "Videojuegos" -> imageCategoria.setImageResource(R.drawable.imagen_videojuegos)
+            "Historia" -> imageCategoria.setImageResource(R.drawable.imagen_historia)
+
+            else -> imageCategoria.setImageResource(R.drawable.default_image)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("QUIZAPP_DEBUG", "onCreate()...")
         super.onCreate(savedInstanceState)
@@ -140,6 +157,8 @@ class MainActivity : AppCompatActivity() {
         puntajefinal = findViewById(R.id.puntaje_total)
         testButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
+
+        configureImageByCategory(model.categoria)
 
         randomizeQuestionOrder()
 
