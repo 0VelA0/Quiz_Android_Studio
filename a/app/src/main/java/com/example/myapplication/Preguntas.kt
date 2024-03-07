@@ -41,7 +41,7 @@ class Preguntas : ViewModel() {
         Pregunta("¿Qué líder militar y político francés es conocido por ser de baja estatura y por su complejo de inferioridad?", "Napoleón Bonaparte", arrayListOf("Charles de Gaulle","Luis XIV","Robespierre"), "Historia")
     )
 
-    private val preguntasReales = preguntas.shuffled().subList(0,9)
+    private val preguntasReales = preguntas.shuffled().subList(0,10)
     val textoPreguntaActual: String
         get()= preguntasReales[preguntaactual].texto
 

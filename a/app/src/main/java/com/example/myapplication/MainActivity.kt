@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         if (answered == total){
             val intent = Intent(this, Resultados::class.java)
             intent.putExtra("SCORE_EXTRA", puntaje) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
+            intent.putExtra("DIFFICULTYMOD", if(dificulty == "Facil") 1 else if(dificulty == "Normal") 2 else 3) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
             startActivity(intent)
         }
         else{
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
-        Log.d("debug selected item", "Dificulty: $dificulty")
+
         bonusGive=true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
@@ -128,6 +129,26 @@ class MainActivity : AppCompatActivity() {
             Answer3.visibility = View.INVISIBLE
             Answer4.visibility = View.INVISIBLE
         }
+
+        if(model.puntajeInterruptor){
+            hintButton.visibility = View.INVISIBLE
+            nextButton.visibility = View.VISIBLE
+            prevButton.visibility = View.VISIBLE
+            if(model.respondida){
+                preguntatexto.setTextColor(Color.GREEN)
+            }
+            else{
+                preguntatexto.setTextColor(Color.RED)
+            }
+
+        }
+        else{
+            preguntatexto.setTextColor(Color.BLACK)
+            hintButton.visibility = View.VISIBLE
+            nextButton.visibility = View.INVISIBLE
+            prevButton.visibility = View.INVISIBLE
+        }
+
     }
 
     private fun useHint(){
@@ -178,10 +199,16 @@ class MainActivity : AppCompatActivity() {
     }
     private fun checkAnswer(b: Button){
         if (!model.puntajeInterruptor) {
-
+            hintButton.visibility = View.INVISIBLE
             if(b.text.toString() ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
-                puntaje += 2
+                var difmod = 0
+                when(dificulty){
+                    "Facil"-> difmod = 1
+                    "Normal"-> difmod = 2
+                    "Dificil"-> difmod = 3
+                }
+                puntaje += if (!bonusGive) (1*difmod) else (2*difmod)
                 b.setBackgroundColor(Color.GREEN)
                 model.respondida = true
                 if(bonusGive){
