@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     val i = intent
     val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Normal"
 
-    private val SCORE_EXTRA = 50 //cuando ya haya una funcion para calcular el score reemplaza con "SCORE_EXTRA"
     private val HINTACTIVITY_REQUEST_CODE = 0
 
     private lateinit var preguntatexto: TextView
@@ -54,7 +53,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun compareAnswered(){
         if (answered == total){
-            //pasar puntaje al activity resultados
+            val intent = Intent(this, Resultados::class.java)
+            intent.putExtra("SCORE_EXTRA", puntaje) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
+            startActivity(intent)
         }
         else{
             return
@@ -179,15 +180,6 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, HINTACTIVITY_REQUEST_CODE)
         }
 
-
-
-        // Este codigo es un test para cambiar entre activities pueden borrarlo si no lo necesitan
-        testButton.setOnClickListener {
-            val intent = Intent(this, Resultados::class.java)
-            //intent.putExtra("SCORE_EXTRA", funcioncalcularscore()) //que esta funcion que crees retorne un valor
-            intent.putExtra("SCORE_EXTRA", 100) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
-            startActivity(intent)
-        }
    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
