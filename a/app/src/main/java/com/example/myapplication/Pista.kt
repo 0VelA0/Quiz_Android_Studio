@@ -25,7 +25,7 @@ class Pista : AppCompatActivity() {
         hintButton = findViewById(R.id.hints_button)
 
         hintButton.setOnClickListener{ _ ->
-            answerText.text = if (answer) "VERDADERO" else "FALSO"
+            answerText.text = "PISTA UTILIZADA"
 
             val intent = Intent()
             intent.putExtra(HINTACTIVITY_EXTRA_ANSWER ,if (answer) "VERDADERO" else "FALSO")

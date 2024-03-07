@@ -56,6 +56,9 @@ class Preguntas : ViewModel() {
             preguntas[preguntaactual].resactivador = value
         }
 
+    val totalPreguntas: Int
+        get() = preguntas.size
+
     fun siguientePregunta(){
         preguntaactual = (preguntaactual + 1) % preguntas.size
     }

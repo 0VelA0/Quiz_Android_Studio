@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
 
     private val model: Preguntas by viewModels()
     private var puntaje = 0
+    private var answered = 0
+    private var total = model.totalPreguntas
 
-    private fun showSnackbar(message: String) {
+        private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
         val snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction("Death", View.OnClickListener {})
@@ -49,6 +51,15 @@ class MainActivity : AppCompatActivity() {
 //        showSnackbar(message)
 //    }
 
+
+    private fun compareAnswered(){
+        if (answered == total){
+            //pasar puntaje al activity resultados
+        }
+        else{
+            return
+        }
+    }
     private fun mostrarPuntajeTotal() {
         val totalScoreMessage = "Total Score: $puntaje"
         puntajefinal.text = totalScoreMessage
@@ -94,15 +105,18 @@ class MainActivity : AppCompatActivity() {
 
             if(answer ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
+                puntaje += 2
             }
             else{
                 showSnackbar("Respuesta Incorrecta")
             }
+            answered+=1
             model.puntajeInterruptor = true
         } else {
             Toast.makeText(this, "Ya has respondido esta pregunta", Toast.LENGTH_SHORT).show()
         }
         mostrarPuntajeTotal()
+        compareAnswered()
         nextButton.visibility = View.VISIBLE
         prevButton.visibility = View.VISIBLE
     }
@@ -112,8 +126,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
-
 
         preguntatexto = findViewById(R.id.pregunta)
         Answer1 = findViewById(R.id.boton_1)
