@@ -41,29 +41,30 @@ class Preguntas : ViewModel() {
         Pregunta("¿Qué líder militar y político francés es conocido por ser de baja estatura y por su complejo de inferioridad?", "Napoleón Bonaparte", arrayListOf("Charles de Gaulle","Luis XIV","Robespierre"), "Historia")
     )
 
+    private val preguntasReales = preguntas.shuffled().subList(0,9)
     val textoPreguntaActual: String
-        get()= preguntas[preguntaactual].texto
+        get()= preguntasReales[preguntaactual].texto
 
     val respuestaPreguntaActual: String
-        get() = preguntas[preguntaactual].respuestaCorrecta
+        get() = preguntasReales[preguntaactual].respuestaCorrecta
 
     val otrasRespuestas: ArrayList<String>
-        get() = preguntas[preguntaactual].respuestasIncorrectas
+        get() = preguntasReales[preguntaactual].respuestasIncorrectas
 
     var puntajeInterruptor: Boolean
-        get() = preguntas[preguntaactual].resactivador ?: false
+        get() = preguntasReales[preguntaactual].resactivador ?: false
         set(value) {
-            preguntas[preguntaactual].resactivador = value
+            preguntasReales[preguntaactual].resactivador = value
         }
 
     val totalPreguntas: Int
-        get() = preguntas.size
+        get() = preguntasReales.size
 
     fun siguientePregunta(){
-        preguntaactual = (preguntaactual + 1) % preguntas.size
+        preguntaactual = (preguntaactual + 1) % preguntasReales.size
     }
 
     fun  anteriorPregunta(){
-        preguntaactual = (preguntaactual - 1 + preguntas.size) % preguntas.size
+        preguntaactual = (preguntaactual - 1 + preguntasReales.size) % preguntasReales.size
     }
 }
