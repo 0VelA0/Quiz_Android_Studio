@@ -33,8 +33,10 @@
 
             <ImageView
                 android:id="@+id/myImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="200sp"
+                android:layout_height="135dp"
+                android:layout_margin="20dp"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <Button
                 android:id="@+id/jugar"
