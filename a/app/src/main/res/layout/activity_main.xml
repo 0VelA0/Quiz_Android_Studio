@@ -22,6 +22,11 @@
             android:textSize="22sp"
             />
 
+        <ImageView
+            android:id="@+id/imageCategoria"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
+
         <TextView
             android:id="@+id/pregunta"
             android:layout_width="wrap_content"
@@ -99,13 +104,14 @@
                 android:textColor="#8BC34A"
                 android:visibility="invisible"/>
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/test_act"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_button"
+                android:layout_marginBottom="10dp" />
 
-        <Button
-            android:id="@+id/test_act"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test"/>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
