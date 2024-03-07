@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +16,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 class MainActivity : AppCompatActivity() {
 
     val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Normal"
+    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Facil"
 
     private val HINTACTIVITY_REQUEST_CODE = 0
+
+    private var remainingHints = 5
 
     private lateinit var preguntatexto: TextView
     private lateinit var puntajefinal: TextView
@@ -86,14 +89,19 @@ class MainActivity : AppCompatActivity() {
 
         totalRespuestas.shuffle()
         Answer1.text = totalRespuestas[0]
+        Answer1.setBackgroundColor(Color.BLACK)
         Answer2.text = totalRespuestas[1]
+        Answer2.setBackgroundColor(Color.BLACK)
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.visibility = View.INVISIBLE
 
         }else if(dificulty == "Dificil"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.text = totalRespuestas[3]
+            Answer4.setBackgroundColor(Color.BLACK)
         }
         else{
             Answer3.visibility = View.INVISIBLE
@@ -121,6 +129,45 @@ class MainActivity : AppCompatActivity() {
         nextButton.visibility = View.VISIBLE
         prevButton.visibility = View.VISIBLE
     }
+
+    private fun useHint(){
+        if(remainingHints > 0){
+            if(dificulty == "Facil"){
+                if (Answer1.text == model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.GREEN)
+                }else if(Answer2.text == model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.GREEN)
+                }
+            }
+            else if(dificulty == "Normal"){
+                if (Answer1.text != model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.RED)
+                }else if(Answer2.text != model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.RED)
+                }else if(Answer3.text != model.respuestaPreguntaActual) {
+                    Answer3.setBackgroundColor(Color.RED)
+                }
+            }
+            else if(dificulty == "Dificil"){
+                if (Answer1.text != model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.RED)
+                }else if(Answer2.text != model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.RED)
+                }else if(Answer3.text != model.respuestaPreguntaActual){
+                    Answer3.setBackgroundColor(Color.RED)
+                }else if(Answer4.text != model.respuestaPreguntaActual) {
+                    Answer4.setBackgroundColor(Color.RED)
+                }
+            }
+        remainingHints -= 1
+        }
+        else{
+            Toast.makeText(this, "Ya no tienes mas pistas para usar", Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("QUIZAPP_DEBUG", "onCreate()...")
@@ -171,6 +218,10 @@ class MainActivity : AppCompatActivity() {
             prevButton.visibility = View.INVISIBLE
             nextButton.visibility = View.INVISIBLE
             randomizeQuestionOrder()
+        }
+
+        testButton.setOnClickListener { _ ->
+            useHint()
         }
 
 
