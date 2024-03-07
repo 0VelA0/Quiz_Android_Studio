@@ -1,12 +1,13 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Color
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -16,11 +17,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 class MainActivity : AppCompatActivity() {
 
     val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Facil"
+    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Normal"
 
     private val HINTACTIVITY_REQUEST_CODE = 0
-
-    private var remainingHints = 5
 
     private lateinit var preguntatexto: TextView
     private lateinit var puntajefinal: TextView
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
     private lateinit var testButton: Button
+    private lateinit var ImageView: Image
 
     private val model: Preguntas by viewModels()
     private var puntaje = 0
@@ -89,19 +89,14 @@ class MainActivity : AppCompatActivity() {
 
         totalRespuestas.shuffle()
         Answer1.text = totalRespuestas[0]
-        Answer1.setBackgroundColor(Color.BLACK)
         Answer2.text = totalRespuestas[1]
-        Answer2.setBackgroundColor(Color.BLACK)
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
-            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.visibility = View.INVISIBLE
 
         }else if(dificulty == "Dificil"){
             Answer3.text = totalRespuestas[2]
-            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.text = totalRespuestas[3]
-            Answer4.setBackgroundColor(Color.BLACK)
         }
         else{
             Answer3.visibility = View.INVISIBLE
@@ -130,44 +125,19 @@ class MainActivity : AppCompatActivity() {
         prevButton.visibility = View.VISIBLE
     }
 
-    private fun useHint(){
-        if(remainingHints > 0){
-            if(dificulty == "Facil"){
-                if (Answer1.text == model.respuestaPreguntaActual){
-                    Answer1.setBackgroundColor(Color.GREEN)
-                }else if(Answer2.text == model.respuestaPreguntaActual){
-                    Answer2.setBackgroundColor(Color.GREEN)
-                }
-            }
-            else if(dificulty == "Normal"){
-                if (Answer1.text != model.respuestaPreguntaActual){
-                    Answer1.setBackgroundColor(Color.RED)
-                }else if(Answer2.text != model.respuestaPreguntaActual){
-                    Answer2.setBackgroundColor(Color.RED)
-                }else if(Answer3.text != model.respuestaPreguntaActual) {
-                    Answer3.setBackgroundColor(Color.RED)
-                }
-            }
-            else if(dificulty == "Dificil"){
-                if (Answer1.text != model.respuestaPreguntaActual){
-                    Answer1.setBackgroundColor(Color.RED)
-                }else if(Answer2.text != model.respuestaPreguntaActual){
-                    Answer2.setBackgroundColor(Color.RED)
-                }else if(Answer3.text != model.respuestaPreguntaActual){
-                    Answer3.setBackgroundColor(Color.RED)
-                }else if(Answer4.text != model.respuestaPreguntaActual) {
-                    Answer4.setBackgroundColor(Color.RED)
-                }
-            }
-        remainingHints -= 1
-        }
-        else{
-            Toast.makeText(this, "Ya no tienes mas pistas para usar", Toast.LENGTH_SHORT).show()
-        }
+    private fun configureImageByCategory(categoria: String) {
+        val imageCategoria = findViewById<ImageView>(R.id.imageCategoria)
 
+        when (categoria) {
+            "Musica" -> imageCategoria.setImageResource(R.drawable.imagen_musica)
+            "Deportes" -> imageCategoria.setImageResource(R.drawable.imagen_deportes)
+            "Ciencia" -> imageCategoria.setImageResource(R.drawable.imagen_ciencia)
+            "Videojuegos" -> imageCategoria.setImageResource(R.drawable.imagen_videojuegos)
+            "Historia" -> imageCategoria.setImageResource(R.drawable.imagen_historia)
 
+            else -> imageCategoria.setImageResource(R.drawable.default_image)
+        }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("QUIZAPP_DEBUG", "onCreate()...")
@@ -187,6 +157,8 @@ class MainActivity : AppCompatActivity() {
         puntajefinal = findViewById(R.id.puntaje_total)
         testButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
+
+        configureImageByCategory(model.categoria)
 
         randomizeQuestionOrder()
 
@@ -218,10 +190,6 @@ class MainActivity : AppCompatActivity() {
             prevButton.visibility = View.INVISIBLE
             nextButton.visibility = View.INVISIBLE
             randomizeQuestionOrder()
-        }
-
-        testButton.setOnClickListener { _ ->
-            useHint()
         }
 
 
