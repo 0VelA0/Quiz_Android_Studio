@@ -18,8 +18,9 @@ import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
-    val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA") else "Dificil"
+
+    private var dificulty = if (intent!=null) intent.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
+
 
     private val HINTACTIVITY_REQUEST_CODE = 0
 
@@ -34,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
     private lateinit var hintButton: Button
-    private lateinit var ImageView: Image
     private lateinit var hint_text: TextView
     private lateinit var streak_text: TextView
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
         val snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_INDEFINITE)
-        snackbar.setAction("Death", View.OnClickListener {})
+        snackbar.setAction("OK", View.OnClickListener {})
         snackbar.show()
     }
 
@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
+        Log.d("debug selected item", "Dificulty: $dificulty")
         bonusGive=true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
@@ -224,6 +225,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
         Log.d("QUIZAPP_DEBUG", "onCreate()...")
         super.onCreate(savedInstanceState)
 
@@ -243,8 +245,6 @@ class MainActivity : AppCompatActivity() {
         preguntatexto.text = model.textoPreguntaActual
         hint_text = findViewById(R.id.hints)
         streak_text = findViewById(R.id.streak)
-
-
 
         randomizeQuestionOrder()
 

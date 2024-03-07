@@ -36,15 +36,10 @@ class Activity1 : AppCompatActivity() {
         image.setImageResource(R.drawable.quizlogo)
 
         jugar.setOnClickListener {
-            try {
-                Log.d("QUIZAPP_DEBUG", "Jugar button clicked")
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("QUIZAPP_DEBUG", "Error in Jugar button click: ${e.message}")
-                e.printStackTrace()
-            }
+            val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
+            Log.d("debug selected item", selectedItem)
+            startActivity(intent)
         }
         opciones.setOnClickListener{
             val intent = Intent(this,Activity2::class.java)
