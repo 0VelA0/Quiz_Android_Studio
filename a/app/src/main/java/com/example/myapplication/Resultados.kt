@@ -56,12 +56,10 @@ class Resultados : AppCompatActivity() {
         scorePoints.text = score.toString()
 
         startAgainButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Activity1::class.java)
             startActivity(intent)
             finish()
         }
-
-
 
     }
 
