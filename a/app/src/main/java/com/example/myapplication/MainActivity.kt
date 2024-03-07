@@ -15,7 +15,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 class MainActivity : AppCompatActivity() {
 
     val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Dificil"
+    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA",) else "Normal"
 
     private val SCORE_EXTRA = 50 //cuando ya haya una funcion para calcular el score reemplaza con "SCORE_EXTRA"
     private val HINTACTIVITY_REQUEST_CODE = 0
@@ -64,8 +64,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(dificulty == "Normal"){
-            if(totalRespuestas[0] == totalRespuestas[1]){
-                randomizeQuestionOrder()
+            while(totalRespuestas[0] == totalRespuestas[1]){
+                totalRespuestas.clear()
+                totalRespuestas.add(model.otrasRespuestas.random()) && totalRespuestas.add(model.otrasRespuestas.random())
             }
         }
 
@@ -76,12 +77,11 @@ class MainActivity : AppCompatActivity() {
         Answer2.text = totalRespuestas[1]
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
-            Answer3.visibility = View.VISIBLE
+            Answer4.visibility = View.INVISIBLE
+
         }else if(dificulty == "Dificil"){
             Answer3.text = totalRespuestas[2]
-            Answer3.visibility = View.VISIBLE
             Answer4.text = totalRespuestas[3]
-            Answer4.visibility = View.VISIBLE
         }
         else{
             Answer3.visibility = View.INVISIBLE
@@ -97,15 +97,14 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 showSnackbar("Respuesta Incorrecta")
-
             }
-            mostrarPuntajeTotal()
-            nextButton.visibility = View.VISIBLE
-            prevButton.visibility = View.VISIBLE
             model.puntajeInterruptor = true
         } else {
             Toast.makeText(this, "Ya has respondido esta pregunta", Toast.LENGTH_SHORT).show()
         }
+        mostrarPuntajeTotal()
+        nextButton.visibility = View.VISIBLE
+        prevButton.visibility = View.VISIBLE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
