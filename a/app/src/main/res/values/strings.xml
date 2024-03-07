@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">CHUPALA OSVALDO JAJAJAJAJA</string>
-    <string name="yes_button">Yes</string>
-    <string name="no_button">No</string>
+    <string name="app_name">QuizzAppFinal</string>
     <string name="next_button">Siguiente</string>
     <string name="correct_text">Correcto</string>
     <string name="incorrect_text">Incorrecto</string>

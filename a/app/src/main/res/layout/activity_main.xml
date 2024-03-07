@@ -35,22 +35,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/boton_si"
+                android:id="@+id/boton_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="@string/yes_button"
+                tools:text="1"
                 android:textColor="#FFEB3B"/>
 
             <Button
-                android:id="@+id/boton_no"
+                android:id="@+id/boton_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="@string/no_button"
+                tools:text="2"
+                android:textColor="#FFEB3B"/>
+
+            <Button
+                android:id="@+id/boton_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                tools:text="3"
+                android:textColor="#FFEB3B"/>
+
+            <Button
+                android:id="@+id/boton_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                tools:text="4"
                 android:textColor="#FFEB3B"/>
 
 

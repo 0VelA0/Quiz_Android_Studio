@@ -32,7 +32,7 @@ class Activity1 : AppCompatActivity() {
 
         jugar.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra("dificultad", selectedItem)
+            intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
             startActivity(intent)
         }
         opciones.setOnClickListener{
