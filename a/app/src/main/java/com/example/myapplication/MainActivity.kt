@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
-        Log.d("debug selected item", "Dificulty: $dificulty")
+
         bonusGive=true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
@@ -129,6 +129,26 @@ class MainActivity : AppCompatActivity() {
             Answer3.visibility = View.INVISIBLE
             Answer4.visibility = View.INVISIBLE
         }
+
+        if(model.puntajeInterruptor){
+            hintButton.visibility = View.INVISIBLE
+            nextButton.visibility = View.VISIBLE
+            prevButton.visibility = View.VISIBLE
+            if(model.respondida){
+                preguntatexto.setTextColor(Color.GREEN)
+            }
+            else{
+                preguntatexto.setTextColor(Color.RED)
+            }
+
+        }
+        else{
+            preguntatexto.setTextColor(Color.BLACK)
+            hintButton.visibility = View.VISIBLE
+            nextButton.visibility = View.INVISIBLE
+            prevButton.visibility = View.INVISIBLE
+        }
+
     }
 
     private fun useHint(){
@@ -179,7 +199,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun checkAnswer(b: Button){
         if (!model.puntajeInterruptor) {
-
+            hintButton.visibility = View.INVISIBLE
             if(b.text.toString() ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
                 var difmod = 0
