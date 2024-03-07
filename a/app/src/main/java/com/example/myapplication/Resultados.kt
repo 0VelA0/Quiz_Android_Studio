@@ -31,9 +31,12 @@ class Resultados : AppCompatActivity() {
         score = intent.getIntExtra("SCORE_EXTRA", 0)
         mod = intent.getIntExtra("DIFFICULTYMOD", 0)
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             score = savedInstanceState.getInt("CURRENT_SCORE", 0)
             mod = savedInstanceState.getInt("DIFFICULTYMOD", 0)
+        } else {
+            score = intent.getIntExtra("SCORE_EXTRA", 0)
+            mod = intent.getIntExtra("DIFFICULTYMOD", 0)
         }
 
         when (score) {
@@ -71,6 +74,7 @@ class Resultados : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt("CURRENT_SCORE", score)
+        outState.putInt("DIFFICULTYMOD", mod)
         super.onSaveInstanceState(outState)
     }
 }
