@@ -45,6 +45,7 @@ class Activity1 : AppCompatActivity() {
             Log.d("debug selected item", selectedItem)
             startActivity(intent)
         }
+
         opciones.setOnClickListener{
             val intent = Intent(this,Activity2::class.java)
             startActivity(intent)
