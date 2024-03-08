@@ -30,9 +30,6 @@
             android:name=".Resultados"
             android:exported="false" />
 
-        <activity android:name=".Pista"
-            android:exported="false"/>
-
         <activity
             android:name=".Activity2"
             android:exported="false"/>
