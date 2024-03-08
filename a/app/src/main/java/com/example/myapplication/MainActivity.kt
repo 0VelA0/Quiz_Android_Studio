@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
-
         bonusGive = true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
@@ -288,10 +287,9 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState != null){
             randomized = savedInstanceState.getBoolean("randomized")
             CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
+            bonusGive = savedInstanceState.getBoolean("NotUsedHint")
         }
         else{randomized = false}
-
-
 
         super.onCreate(savedInstanceState)
 
@@ -314,6 +312,7 @@ class MainActivity : AppCompatActivity() {
         streak_text = findViewById(R.id.streak)
 
         randomizeQuestionOrder()
+
 
         Answer1.setOnClickListener {
             checkAnswer(Answer1)
@@ -351,7 +350,6 @@ class MainActivity : AppCompatActivity() {
             CurrentAnswers.clear()
             randomizeQuestionOrder()
         }
-
    }
 
 
