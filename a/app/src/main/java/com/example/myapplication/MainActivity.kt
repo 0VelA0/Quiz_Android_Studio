@@ -15,14 +15,12 @@ import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import org.w3c.dom.Text
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
 
     private var dificulty = if (intent!=null) intent.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
-
-
-    private val HINTACTIVITY_REQUEST_CODE = 0
 
     private var remainingHints = 5
 
@@ -43,7 +41,9 @@ class MainActivity : AppCompatActivity() {
     private var answered: Int = 0
     private var total: Int = 0
     private var streak: Int = 0
-    private var bonusGive = true
+    private var bonusGive: Boolean = true
+    private var randomized: Boolean = false
+    private var CurrentAnswers = arrayListOf<String>()
 
         private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
@@ -89,8 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
-
-        bonusGive=true
+        bonusGive = true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
 
@@ -107,9 +106,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        totalRespuestas.add(model.respuestaPreguntaActual)
+        if(CurrentAnswers.size == 0){
+            totalRespuestas.add(model.respuestaPreguntaActual)
+            totalRespuestas.shuffle()
+            CurrentAnswers = totalRespuestas
+        }
+        else{
+            totalRespuestas = CurrentAnswers
+        }
 
-        totalRespuestas.shuffle()
         Answer1.text = totalRespuestas[0]
         Answer2.text = totalRespuestas[1]
         Answer1.setBackgroundColor(Color.BLACK)
@@ -149,6 +154,7 @@ class MainActivity : AppCompatActivity() {
             prevButton.visibility = View.INVISIBLE
         }
 
+        randomized = true
     }
 
     private fun useHint(){
@@ -255,10 +261,15 @@ class MainActivity : AppCompatActivity() {
         dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
         Log.d("QUIZAPP_DEBUG", "onCreate: savedInstanceState is ${if (savedInstanceState != null) "not" else ""} null")
 
+        if(savedInstanceState != null){
+            randomized = savedInstanceState.getBoolean("randomized")
+            CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
+        }
+        else{randomized = false}
         super.onCreate(savedInstanceState)
 
-        total = model.totalPreguntas
 
+        total = model.totalPreguntas
 
         setContentView(R.layout.activity_main)
 
@@ -274,7 +285,6 @@ class MainActivity : AppCompatActivity() {
         preguntatexto.text = model.textoPreguntaActual
         hint_text = findViewById(R.id.hints)
         streak_text = findViewById(R.id.streak)
-
 
         randomizeQuestionOrder()
 
@@ -301,6 +311,8 @@ class MainActivity : AppCompatActivity() {
             preguntatexto.text = model.textoPreguntaActual
             nextButton.visibility = View.INVISIBLE
             prevButton.visibility = View.INVISIBLE
+            randomized = false
+            CurrentAnswers.clear()
             randomizeQuestionOrder()
         }
         prevButton.setOnClickListener { _ ->
@@ -308,38 +320,14 @@ class MainActivity : AppCompatActivity() {
             preguntatexto.text = model.textoPreguntaActual
             prevButton.visibility = View.INVISIBLE
             nextButton.visibility = View.INVISIBLE
+            randomized = false
+            CurrentAnswers.clear()
             randomizeQuestionOrder()
-        }
-
-
-        preguntatexto.setOnClickListener { _ ->
-            val intent = Intent(this, Pista::class.java)
-            intent.putExtra(HINTACTIVITY_EXTRA_ANSWER, model.respuestaPreguntaActual)
-            startActivityForResult(intent, HINTACTIVITY_REQUEST_CODE)
         }
 
    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            HINTACTIVITY_REQUEST_CODE ->
-                when (resultCode) {
-                    RESULT_OK ->
-                        Toast.makeText(
-                            this,
-                            "¡HINT: ${data!!.getStringExtra(HINTACTIVITY_EXTRA_ANSWER)}!",
-                            Toast.LENGTH_SHORT
-                        ).show()
 
-                    RESULT_CANCELED -> Toast.makeText(
-                        this,
-                        "¡ACTIVITY CERRADO!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-        }
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -350,6 +338,8 @@ class MainActivity : AppCompatActivity() {
         outState.putInt("ANSWERED", answered)
         outState.putInt("TOTAL", total)
         outState.putInt("STREAK", streak)
+        outState.putBoolean("randomized", randomized)
+        outState.putStringArrayList("answers", CurrentAnswers)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -360,6 +350,8 @@ class MainActivity : AppCompatActivity() {
         answered = savedInstanceState.getInt("ANSWERED")
         total = savedInstanceState.getInt("TOTAL")
         streak = savedInstanceState.getInt("STREAK")
+        randomized = savedInstanceState.getBoolean("randomized")
+        CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
 
         mostrarHints()
         mostrarPuntajeTotal()

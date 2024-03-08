@@ -37,7 +37,7 @@ class Preguntas : ViewModel() {
         Pregunta("¿En qué año comenzó la Primera Guerra Mundial?", "1914", arrayListOf("1920","1945","1935"), "Historia"),
         Pregunta("¿Cuál de estos eventos históricos ocurrió primero?", "La Revolución Francesa", arrayListOf("La Revolución Rusa","La Revolución Americana","La Revolución Industrial"), "Historia"),
         Pregunta("¿Qué país fue gobernado por el zar Nicolás II hasta la Revolución Rusa de 1917?", "Rusia", arrayListOf("Alemania","Francia","Italia"), "Historia"),
-        Pregunta("¿Cuál de los siguientes eventos históricos involucró la famosa \"Carrera Espacial\"", "Guerra Fría", arrayListOf("Revolución Industrial","Renacimiento","Edad Media"), "Historia"),
+        Pregunta("¿Cuál de los siguientes eventos históricos involucró la famosa \"Carrera Espacial\"?", "Guerra Fría", arrayListOf("Revolución Industrial","Renacimiento","Edad Media"), "Historia"),
         Pregunta("¿Qué líder militar y político francés es conocido por ser de baja estatura y por su complejo de inferioridad?", "Napoleón Bonaparte", arrayListOf("Charles de Gaulle","Luis XIV","Robespierre"), "Historia")
     )
 
