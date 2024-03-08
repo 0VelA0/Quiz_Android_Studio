@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import org.w3c.dom.Text
+import java.util.ArrayList
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
@@ -90,6 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomizeQuestionOrder(){
+
         bonusGive = true
         configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
@@ -117,8 +119,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         Answer1.text = totalRespuestas[0]
-        Answer2.text = totalRespuestas[1]
         Answer1.setBackgroundColor(Color.BLACK)
+        Answer2.text = totalRespuestas[1]
         Answer2.setBackgroundColor(Color.BLACK)
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
@@ -140,11 +142,31 @@ class MainActivity : AppCompatActivity() {
             hintButton.visibility = View.INVISIBLE
             nextButton.visibility = View.VISIBLE
             prevButton.visibility = View.VISIBLE
-            if(model.respondida){
-                preguntatexto.setTextColor(Color.GREEN)
+
+            if(Answer1.text == model.respuestaPreguntaActual){
+                Answer1.setBackgroundColor(Color.GREEN)
             }
-            else{
-                preguntatexto.setTextColor(Color.RED)
+            else if(Answer2.text == model.respuestaPreguntaActual){
+                Answer2.setBackgroundColor(Color.GREEN)
+            }
+            else if(Answer3.text == model.respuestaPreguntaActual){
+                Answer3.setBackgroundColor(Color.GREEN)
+            }
+            else if(Answer4.text == model.respuestaPreguntaActual){
+                Answer4.setBackgroundColor(Color.GREEN)
+            }
+
+            if(Answer1.text != model.respuestaPreguntaActual){
+                Answer1.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer2.text != model.respuestaPreguntaActual){
+                Answer2.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer3.text != model.respuestaPreguntaActual){
+                Answer3.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer4.text != model.respuestaPreguntaActual){
+                Answer4.setBackgroundColor(Color.BLACK)
             }
 
         }
@@ -259,6 +281,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
         Log.d("QUIZAPP_DEBUG", "onCreate: savedInstanceState is ${if (savedInstanceState != null) "not" else ""} null")
 
@@ -267,6 +290,9 @@ class MainActivity : AppCompatActivity() {
             CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
         }
         else{randomized = false}
+
+
+
         super.onCreate(savedInstanceState)
 
 
@@ -341,6 +367,7 @@ class MainActivity : AppCompatActivity() {
         outState.putInt("STREAK", streak)
         outState.putBoolean("randomized", randomized)
         outState.putStringArrayList("answers", CurrentAnswers)
+        outState.putBoolean("NotUsedHint", bonusGive)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -353,6 +380,7 @@ class MainActivity : AppCompatActivity() {
         streak = savedInstanceState.getInt("STREAK")
         randomized = savedInstanceState.getBoolean("randomized")
         CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
+        bonusGive = savedInstanceState.getBoolean("NotUsedHint")
 
         mostrarHints()
         mostrarPuntajeTotal()
