@@ -18,6 +18,15 @@
     <string name="hints_text">Pistas restantes: 5</string>
     <string name="streak">Racha: 0</string>
     <string name="score">Total Score: 0</string>
+    <string name="puntuacion_btn_text">Puntuaciones</string>
+    <string name="options_title_text">Opciones de Juego</string>
+    <string name="Checkbox_theme_text">Deportes</string>
+    <string name="Checkbox_music_text">Musica</string>
+    <string name="Checkbox_science_text">Ciencias</string>
+    <string name="Checkbox_videogames_text">Videojuegos</string>
+    <string name="Checkbox_Historia_Text">Historia</string>
+    <string name="Checkbox_Movies_text">Peliculas</string>
+    <string name="Puntuaciones_text">Puntuaciones</string>
 
 
 </resources>

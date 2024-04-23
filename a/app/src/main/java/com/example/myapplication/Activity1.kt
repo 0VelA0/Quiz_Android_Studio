@@ -15,7 +15,8 @@ class Activity1 : AppCompatActivity() {
 
     private lateinit var jugar: Button
     private lateinit var opciones: Button
-    private lateinit var dificultad: Spinner
+    private lateinit var puntuaciones: Button
+    //private lateinit var dificultad: Spinner
     private lateinit var image: ImageView
     private var selectedItem: String = ""
 
@@ -30,18 +31,19 @@ class Activity1 : AppCompatActivity() {
 
         jugar = findViewById(R.id.jugar)
         opciones = findViewById(R.id.Opciones)
-        dificultad = findViewById(R.id.spinner_dificultad)
+        puntuaciones = findViewById(R.id.puntuaciones)
+        //dificultad = findViewById(R.id.spinner_dificultad)
         image = findViewById(R.id.myImageView)
 
         image.setImageResource(R.drawable.quizlogo)
 
         if (savedInstanceState != null){
-            selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
+            //selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
         }
 
         jugar.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
+            //intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
             Log.d("debug selected item", selectedItem)
             startActivity(intent)
         }
@@ -51,27 +53,32 @@ class Activity1 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        dificultad.adapter = adapter
-
-        dificultad.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selectedItem = items[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                selectedItem = "Facil"
-            }
+        puntuaciones.setOnClickListener{
+            val intent = Intent(this, Puntuaciones::class.java)
+            startActivity(intent)
         }
 
+        //dificultad.adapter = adapter
+
+//        dificultad.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                selectedItem = items[position]
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//                selectedItem = "Facil"
+//            }
+//        }
+
 
     }
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString("CURRENT_diff", selectedItem)
-        super.onSaveInstanceState(outState)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        outState.putString("CURRENT_diff", selectedItem)
+//        super.onSaveInstanceState(outState)
+//    }
 }
