@@ -15,9 +15,10 @@ class Activity1 : AppCompatActivity() {
 
     private lateinit var jugar: Button
     private lateinit var opciones: Button
-    private lateinit var dificultad: Spinner
+    private lateinit var puntuaciones: Button
+    //private lateinit var dificultad: Spinner
     private lateinit var image: ImageView
-
+    private var selectedItem: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -30,70 +31,54 @@ class Activity1 : AppCompatActivity() {
 
         jugar = findViewById(R.id.jugar)
         opciones = findViewById(R.id.Opciones)
-        dificultad = findViewById(R.id.spinner_dificultad)
+        puntuaciones = findViewById(R.id.puntuaciones)
+        //dificultad = findViewById(R.id.spinner_dificultad)
         image = findViewById(R.id.myImageView)
 
         image.setImageResource(R.drawable.quizlogo)
 
-        jugar.setOnClickListener {
-            try {
-                Log.d("QUIZAPP_DEBUG", "Jugar button clicked")
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("QUIZAPP_DEBUG", "Error in Jugar button click: ${e.message}")
-                e.printStackTrace()
-            }
+        if (savedInstanceState != null){
+            //selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
         }
+
+        jugar.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            //intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
+            Log.d("debug selected item", selectedItem)
+            startActivity(intent)
+        }
+
         opciones.setOnClickListener{
             val intent = Intent(this,Activity2::class.java)
             startActivity(intent)
         }
 
-        dificultad.adapter = adapter
-
-        dificultad.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selectedItem = items[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                selectedItem = "Facil"
-            }
+        puntuaciones.setOnClickListener{
+            val intent = Intent(this, Puntuaciones::class.java)
+            startActivity(intent)
         }
 
+        //dificultad.adapter = adapter
+
+//        dificultad.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                selectedItem = items[position]
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//                selectedItem = "Facil"
+//            }
+//        }
+
 
     }
-
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("QUIZAPP_DEBUG", "onStart()...")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("QUIZAPP_DEBUG", "onResume()...")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("QUIZAPP_DEBUG", "onPause()...")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("QUIZAPP_DEBUG", "onStop()...")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("QUIZAPP_DEBUG", "onDestroy()...")
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        outState.putString("CURRENT_diff", selectedItem)
+//        super.onSaveInstanceState(outState)
+//    }
 }

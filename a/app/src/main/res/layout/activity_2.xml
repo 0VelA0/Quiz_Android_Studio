@@ -13,14 +13,47 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/trabajo_en_proceso"
-            android:textSize="40sp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/options_title_text"
+            android:textSize="30sp"/>
 
-        </TextView>
+        <CheckBox
+            android:id="@+id/Deportes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_theme_text"/>
+        <CheckBox
+            android:id="@+id/Musica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_music_text"/>
+        <CheckBox
+            android:id="@+id/Ciencias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_science_text"/>
+        <CheckBox
+            android:id="@+id/Videojuegos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_videogames_text"/>
+        <CheckBox
+            android:id="@+id/Historia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_Historia_Text"/>
+        <CheckBox
+            android:id="@+id/Peliculas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Checkbox_Movies_text"/>
+
+        <Spinner
+            android:layout_marginTop="20dp"
+            android:id="@+id/spinner_dificultad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

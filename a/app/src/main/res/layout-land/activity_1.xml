@@ -45,12 +45,18 @@
                 android:text="@string/opciones"/>
 
 
-            <Spinner
-                android:layout_marginTop="20dp"
-                android:id="@+id/spinner_dificultad"
+            <Button
+                android:id="@+id/puntuaciones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:text="@string/puntuacion_btn_text"/>
+
+            <!--            <Spinner-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:id="@+id/spinner_dificultad"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                />-->
 
         </LinearLayout>
 
