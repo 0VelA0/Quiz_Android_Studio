@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +13,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import org.w3c.dom.Text
-import java.util.ArrayList
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var hint_text: TextView
     private lateinit var streak_text: TextView
 
-    private val model: Preguntas by viewModels()
+    private val model: PreguntasOld by viewModels()
     private var puntaje: Int = 0
     private var answered: Int = 0
     private var total: Int = 0
