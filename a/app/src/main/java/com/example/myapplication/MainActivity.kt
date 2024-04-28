@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -277,6 +279,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
+
         dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
         Log.d("QUIZAPP_DEBUG", "onCreate: savedInstanceState is ${if (savedInstanceState != null) "not" else ""} null")
 
@@ -293,6 +297,8 @@ class MainActivity : AppCompatActivity() {
         total = model.totalPreguntas
 
         setContentView(R.layout.activity_main)
+
+
 
         preguntatexto = findViewById(R.id.pregunta)
         Answer1 = findViewById(R.id.boton_1)

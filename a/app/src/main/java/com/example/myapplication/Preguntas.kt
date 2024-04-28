@@ -10,5 +10,6 @@ data class Preguntas(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "pregunta") val pregunta: String,
     @ColumnInfo(name = "respuesta") val respuesta: String,
-    @ColumnInfo(name = "categoria") val categoria : String
+    @ColumnInfo(name = "categoria") val categoria : String,
+    @ColumnInfo(name = "respuestatipo") val respuestatipo:Boolean
 )
