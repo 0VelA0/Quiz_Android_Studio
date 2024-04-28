@@ -16,7 +16,7 @@ interface UserDao{
     fun getUserByID(id:Int): List<User>
 
     @Query("SELECT * FROM user WHERE id IN (:ids)")
-    fun getUserByID(ids:List<Int>): List<User>
+    fun getUsersByID(ids:List<Int>): List<User>
 
     @Insert
     fun insertUser(user: User)

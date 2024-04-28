@@ -11,39 +11,22 @@ interface PreguntasDao{
 
 
     @Insert
-    fun insertpregunta(pregunta:Preguntas)
+    fun insertpreguntan(pregunta:Preguntas)
 
     @Insert
-    fun insertpreguntas(prugunta1:Preguntas,pregunta2:Preguntas)
+    fun insertpreguntasn(pregunta1:Preguntas,pregunta2:Preguntas)
 
-    @Insert
-    fun insertrespuesta(respuesta:Preguntas)
-
-    @Insert
-    fun insertrespuestas(respuesa1:Preguntas,respuesta2:Preguntas)
-
-    @Insert
-    fun insertcategoria(categoria: Preguntas)
-
-    @Insert
-    fun insertcategorias(categoria1:Preguntas,categoria2:Preguntas)
 
     @Update
-    fun updatepregunta(preguntas: Array<Preguntas>)
+    fun updatepreguntan(preguntas: Array<Preguntas>)
 
     @Update
-    fun updaterespuesta(respuestas:Array<Preguntas>)
-
-    @Update
-    fun updatecategoria(categorias:Array<Preguntas>)
-
-    @Update
-    fun updateMorepreguntas(vararg preguntas:Preguntas)
+    fun updateMorepreguntasn(vararg preguntas:Preguntas)
 
     @Delete
-    fun deletepreguntas(pregunta: Preguntas)
+    fun deletepreguntasn(pregunta: Preguntas)
 
     @Delete
-    fun deleteUsers(pregunta: List<Preguntas>)
+    fun deletepreguntasn(pregunta: List<Preguntas>)
 
 }
