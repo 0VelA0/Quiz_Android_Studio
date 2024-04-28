@@ -55,6 +55,14 @@ class Activity2: AppCompatActivity() {
             }
         }
 
+        btn_Setting.setOnClickListener {
+            val intent = Intent(this, Activity1::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
+        }
+
+
 
     }
     override fun onSaveInstanceState(outState: Bundle) {
