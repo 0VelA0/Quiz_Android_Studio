@@ -16,44 +16,149 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/options_title_text"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
 
-        <CheckBox
-            android:id="@+id/Deportes"
+        <TextView
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="@string/Checkbox_theme_text"/>
-        <CheckBox
-            android:id="@+id/Musica"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Checkbox_music_text"/>
-        <CheckBox
-            android:id="@+id/Ciencias"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Checkbox_science_text"/>
-        <CheckBox
-            android:id="@+id/Videojuegos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Checkbox_videogames_text"/>
-        <CheckBox
-            android:id="@+id/Historia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Checkbox_Historia_Text"/>
-        <CheckBox
-            android:id="@+id/Peliculas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Checkbox_Movies_text"/>
+            android:text="@string/themes_text"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textColor="@color/black"/>
 
-        <Spinner
-            android:layout_marginTop="20dp"
-            android:id="@+id/spinner_dificultad"
+        <GridLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:textColor="@color/black">
 
+            <!-- Left column -->
+            <CheckBox
+                android:id="@+id/Deportes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_theme_text" />
+
+            <CheckBox
+                android:id="@+id/Musica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_music_text" />
+
+            <CheckBox
+                android:id="@+id/Ciencias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_science_text" />
+
+            <!-- Right column -->
+            <CheckBox
+                android:id="@+id/Videojuegos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_videogames_text" />
+
+            <CheckBox
+                android:id="@+id/Historia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_Historia_Text" />
+
+            <CheckBox
+                android:id="@+id/Literatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Checkbox_literature_text" />
+
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Clue_switch_text"
+                    android:textSize="18sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/clues_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:checked="true"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:text="@string/Dificulty_spinner_text"
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_dificultad"
+                    android:layout_width="131dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slider_text_title"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="5"
+            android:valueTo="10"
+            android:stepSize="1"
+            android:value="7"
+            android:layout_marginBottom="20dp"/>
+
+
+        <Button
+            android:id="@+id/Guardar"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_options_button_text"
+            android:textSize="20sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

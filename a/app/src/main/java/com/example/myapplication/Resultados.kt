@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,6 +16,7 @@ class Resultados : AppCompatActivity() {
     private lateinit var imgScore: ImageView
     private lateinit var scoreMessage: TextView
     private lateinit var startAgainButton: Button
+    private lateinit var topscores: ListView
     private var score: Int = 0
     private var mod: Int = 0
     private var maxscore: Int = 0
@@ -27,9 +30,20 @@ class Resultados : AppCompatActivity() {
         imgScore = findViewById(R.id.img_score)
         scoreMessage = findViewById(R.id.score_message)
         startAgainButton = findViewById(R.id.start_again_button)
+        topscores = findViewById(R.id.top_scores_list)
 
         score = intent.getIntExtra("SCORE_EXTRA", 0)
         mod = intent.getIntExtra("DIFFICULTYMOD", 0)
+
+        // Create a list of top scores (for demonstration purposes)
+        val topScoresList = listOf("Score 1", "Score 2", "Score 3", "Score 4", "Score 5")
+
+        // Create an adapter
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, topScoresList)
+
+        // Set the adapter to the ListView
+        topscores.adapter = adapter
+
 
         if (savedInstanceState != null) {
             score = savedInstanceState.getInt("CURRENT_SCORE", 0)

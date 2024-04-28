@@ -1,4 +1,4 @@
-Temas: [Musica, Deportes, Ciencias, Videojuegos, Historia]
+Temas: [Musica, Deportes, Ciencias, Videojuegos, Historia, Literatura]
 
 Música:
 1. ¿Quién es conocido como "El Rey del Pop"?
@@ -304,3 +304,66 @@ Historia:
     b) Revolución Industrial
     c) Renacimiento
     d) Edad Media
+
+Literatura:
+¡Por supuesto! Aquí están las mismas preguntas con cuatro opciones de respuesta, siendo solo una correcta:
+
+1. ¿Cuál es la obra más conocida de William Shakespeare?
+   a) Hamlet
+   b) Macbeth
+   c) Romeo y Julieta correcto
+   d) Otelo
+
+2. ¿Quién escribió "Cien años de soledad"?
+   a) Pablo Neruda
+   b) Gabriel García Márquez correcto
+   c) Julio Cortázar
+   d) Mario Vargas Llosa
+
+3. ¿Cuál es el género literario de "El código Da Vinci" de Dan Brown?
+   a) Novela histórica
+   b) Novela de misterio correcto
+   c) Novela de ciencia ficción
+   d) Novela de aventuras
+
+4. ¿Quién es el autor de la serie de libros "Harry Potter"?
+   a) J.K. Rowling correcto
+   b) Stephen King
+   c) George R.R. Martin
+   d) J.R.R. Tolkien
+
+5. ¿Qué autor es conocido por su obra "1984"?
+   a) Aldous Huxley
+   b) George Orwell correcto
+   c) Ray Bradbury
+   d) H.G. Wells
+
+6. ¿Cuál es el título de la novela más famosa de Miguel de Cervantes?
+   a) El Quijote correcto
+   b) La Celestina
+   c) El Lazarillo de Tormes
+   d) La Regenta
+
+7. ¿Quién escribió "Matar a un ruiseñor"?
+   a) Harper Lee
+   b) John Steinbeck
+   c) F. Scott Fitzgerald
+   d) Truman Capote
+
+8. ¿Cuál es el nombre del personaje principal de "Don Quijote de la Mancha"?
+   a) Alonso Quijano
+   b) Sancho Panza
+   c) Miguel de Cervantes
+   d) Don Quijote de la Mancha correcto
+
+9. ¿Qué famoso escritor estadounidense es conocido por obras como "El gran Gatsby"?
+   a) Ernest Hemingway
+   b) F. Scott Fitzgerald correcto
+   c) John Steinbeck
+   d) Mark Twain
+
+10. ¿Cuál es el título de la obra ganadora del Premio Nobel de Literatura en 2020?
+    a) "Tokio blues"
+    b) "El vendedor de tabaco"
+    c) "Patria" correcto
+    d) "La ridícula idea de no volver a verte"

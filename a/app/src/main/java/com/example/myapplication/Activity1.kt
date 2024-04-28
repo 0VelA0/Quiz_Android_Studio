@@ -38,12 +38,12 @@ class Activity1 : AppCompatActivity() {
         image.setImageResource(R.drawable.quizlogo)
 
         if (savedInstanceState != null){
-            //selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
+            selectedItem = savedInstanceState.getString("CURRENT_diff", "Fácil")
         }
 
         jugar.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            //intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
+            intent.putExtra("DIFICULTAD_EXTRA", selectedItem)
             Log.d("debug selected item", selectedItem)
             startActivity(intent)
         }

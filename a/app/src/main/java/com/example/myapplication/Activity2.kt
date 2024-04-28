@@ -1,15 +1,18 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 
 class Activity2: AppCompatActivity() {
 
+    private lateinit var btn_Setting: Button
     private lateinit var dificultad: Spinner
     private var selectedItem: String = ""
 
@@ -19,6 +22,8 @@ class Activity2: AppCompatActivity() {
 
         val items = listOf("Facil", "Normal", "Dificil")
         var selectedItem = "Facil"
+        btn_Setting = findViewById(R.id.Guardar)
+
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
