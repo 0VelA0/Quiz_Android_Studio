@@ -24,8 +24,6 @@ interface UserDao{
     @Insert
     fun insertUsers(user1:User,user2:User)
 
-    @Insert
-    fun insertUsersWithFriends(user: User, friends: List<User>)
 
     @Update
     fun updateUsers(users: Array<User>)
