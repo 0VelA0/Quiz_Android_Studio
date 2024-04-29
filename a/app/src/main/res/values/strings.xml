@@ -25,8 +25,15 @@
     <string name="Checkbox_science_text">Ciencias</string>
     <string name="Checkbox_videogames_text">Videojuegos</string>
     <string name="Checkbox_Historia_Text">Historia</string>
-    <string name="Checkbox_Movies_text">Peliculas</string>
+    <string name="Checkbox_literature_text">Literatura</string>
     <string name="Puntuaciones_text">Puntuaciones</string>
+    <string name="TOP_results_text_top5">Top resultados</string>
+    <string name="back_to_title_button_text">Regresar</string>
+    <string name="Clue_switch_text">PISTAS</string>
+    <string name="themes_text">TEMAS</string>
+    <string name="save_options_button_text">GUARDAR</string>
+    <string name="slider_text_title">Numero de preguntas</string>
+    <string name="Dificulty_spinner_text">Dificultad</string>
 
 
 </resources>
