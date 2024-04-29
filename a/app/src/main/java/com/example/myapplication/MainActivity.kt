@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,13 +13,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 class MainActivity : AppCompatActivity() {
 
-    val i = intent
-    val dificulty = if (i!=null) i.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
 
-    private val HINTACTIVITY_REQUEST_CODE = 0
+    private var dificulty = if (intent!=null) intent.getStringExtra("DIFICULTAD_EXTRA") else "Normal"
 
     private var remainingHints = 5
 
@@ -33,17 +32,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var prevButton: Button
     private lateinit var hintButton: Button
-    private lateinit var ImageView: Image
+    private lateinit var hint_text: TextView
+    private lateinit var streak_text: TextView
 
-    private val model: Preguntas by viewModels()
-    private var puntaje = 0
-    private var answered = 0
-    private var total = 0
+    private val model: PreguntasOld by viewModels()
+    private var puntaje: Int = 0
+    private var answered: Int = 0
+    private var total: Int = 0
+    private var streak: Int = 0
+    private var bonusGive: Boolean = true
+    private var randomized: Boolean = false
+    private var CurrentAnswers = arrayListOf<String>()
 
         private fun showSnackbar(message: String) {
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinator)
         val snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_INDEFINITE)
-        snackbar.setAction("Death", View.OnClickListener {})
+        snackbar.setAction("OK", View.OnClickListener {})
         snackbar.show()
     }
 
@@ -61,7 +65,9 @@ class MainActivity : AppCompatActivity() {
         if (answered == total){
             val intent = Intent(this, Resultados::class.java)
             intent.putExtra("SCORE_EXTRA", puntaje) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
+            intent.putExtra("DIFFICULTYMOD", if(dificulty == "Facil") 1 else if(dificulty == "Normal") 2 else 3) // ESTA PARTE MANDA INFO ENTRE ACTIVITIES
             startActivity(intent)
+            finish()
         }
         else{
             return
@@ -72,7 +78,19 @@ class MainActivity : AppCompatActivity() {
         puntajefinal.text = totalScoreMessage
     }
 
+    private fun mostrarHints() {
+        val hintText = "Pistas restantes: $remainingHints"
+        hint_text.text = hintText
+    }
+
+    private fun mostrarStreak() {
+        val streakText = "Racha: $streak"
+        streak_text.text = streakText
+    }
+
     private fun randomizeQuestionOrder(){
+        bonusGive = true
+        configureImageByCategory(model.categoria)
         var totalRespuestas = arrayListOf<String>()
 
         when(dificulty){
@@ -88,28 +106,80 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        totalRespuestas.add(model.respuestaPreguntaActual)
+        if(CurrentAnswers.size == 0){
+            totalRespuestas.add(model.respuestaPreguntaActual)
+            totalRespuestas.shuffle()
+            CurrentAnswers = totalRespuestas
+        }
+        else{
+            totalRespuestas = CurrentAnswers
+        }
 
-        totalRespuestas.shuffle()
         Answer1.text = totalRespuestas[0]
+        Answer1.setBackgroundColor(Color.BLACK)
         Answer2.text = totalRespuestas[1]
+        Answer2.setBackgroundColor(Color.BLACK)
         if(dificulty == "Normal"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.visibility = View.INVISIBLE
 
         }else if(dificulty == "Dificil"){
             Answer3.text = totalRespuestas[2]
+            Answer3.setBackgroundColor(Color.BLACK)
             Answer4.text = totalRespuestas[3]
+            Answer4.setBackgroundColor(Color.BLACK)
         }
         else{
             Answer3.visibility = View.INVISIBLE
             Answer4.visibility = View.INVISIBLE
         }
 
+        if(model.puntajeInterruptor){
+            hintButton.visibility = View.INVISIBLE
+            nextButton.visibility = View.VISIBLE
+            prevButton.visibility = View.VISIBLE
+
+            if(Answer1.text == model.respuestaPreguntaActual){
+                Answer1.setBackgroundColor(Color.GREEN)
+            }
+            else if(Answer2.text == model.respuestaPreguntaActual){
+                Answer2.setBackgroundColor(Color.GREEN)
+            }
+            else if(Answer3.text == model.respuestaPreguntaActual){
+                Answer3.setBackgroundColor(Color.GREEN)
+            }
+            else if(Answer4.text == model.respuestaPreguntaActual){
+                Answer4.setBackgroundColor(Color.GREEN)
+            }
+
+            if(Answer1.text != model.respuestaPreguntaActual){
+                Answer1.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer2.text != model.respuestaPreguntaActual){
+                Answer2.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer3.text != model.respuestaPreguntaActual){
+                Answer3.setBackgroundColor(Color.BLACK)
+            }
+            else if(Answer4.text != model.respuestaPreguntaActual){
+                Answer4.setBackgroundColor(Color.BLACK)
+            }
+
+        }
+        else{
+            preguntatexto.setTextColor(Color.BLACK)
+            hintButton.visibility = View.VISIBLE
+            nextButton.visibility = View.INVISIBLE
+            prevButton.visibility = View.INVISIBLE
+        }
+
+        randomized = true
     }
 
     private fun useHint(){
-        if(remainingHints > 0){
+        if(remainingHints > 0 && bonusGive){
+            bonusGive = false
             if(dificulty == "Facil"){
                 if(Answer1.text == model.respuestaPreguntaActual){
                     Answer1.setBackgroundColor(Color.GREEN)
@@ -130,11 +200,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else if(dificulty == "Dificil"){
-                if(Answer1.text == model.respuestaPreguntaActual){
-                    Answer1.setBackgroundColor(Color.GREEN)
+                if(Answer1.text != model.respuestaPreguntaActual){
+                    Answer1.setBackgroundColor(Color.RED)
                 }
-                else if(Answer2.text == model.respuestaPreguntaActual){
-                    Answer2.setBackgroundColor(Color.GREEN)
+                else if(Answer2.text != model.respuestaPreguntaActual){
+                    Answer2.setBackgroundColor(Color.RED)
                 }
                 else if(Answer3.text != model.respuestaPreguntaActual){
                     Answer3.setBackgroundColor(Color.RED)
@@ -143,20 +213,44 @@ class MainActivity : AppCompatActivity() {
                     Answer4.setBackgroundColor(Color.RED)
                 }
             }
+            remainingHints-=1
+            mostrarHints()
         }
-        else{
+        else if(bonusGive){
             Toast.makeText(this, "No te quedan hints", Toast.LENGTH_SHORT).show()
         }
+        else{
+            Toast.makeText(this, "Ya usaste una hint para esta pregunta", Toast.LENGTH_SHORT).show()
+        }
     }
-    private fun checkAnswer(answer: String){
+    private fun checkAnswer(b: Button){
         if (!model.puntajeInterruptor) {
-
-            if(answer ===  model.respuestaPreguntaActual){
+            hintButton.visibility = View.INVISIBLE
+            if(b.text.toString() ===  model.respuestaPreguntaActual){
                 showSnackbar("Respuesta Correcta")
-                puntaje += 2
+                var difmod = 0
+                when(dificulty){
+                    "Facil"-> difmod = 1
+                    "Normal"-> difmod = 2
+                    "Dificil"-> difmod = 3
+                }
+                puntaje += if (!bonusGive) (1*difmod) else (2*difmod)
+                b.setBackgroundColor(Color.GREEN)
+                model.respondida = true
+                if(bonusGive){
+                    streak+=1
+                    mostrarStreak()
+                    if(streak>=2){
+                        remainingHints+=1
+                        mostrarHints()
+                    }
+                }
             }
             else{
                 showSnackbar("Respuesta Incorrecta")
+                b.setBackgroundColor(Color.RED)
+                streak = 0
+                mostrarStreak()
             }
             answered+=1
             model.puntajeInterruptor = true
@@ -184,12 +278,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("QUIZAPP_DEBUG", "onCreate()...")
+
+
+
+        dificulty = intent.getStringExtra("DIFICULTAD_EXTRA")
+        Log.d("QUIZAPP_DEBUG", "onCreate: savedInstanceState is ${if (savedInstanceState != null) "not" else ""} null")
+
+        if(savedInstanceState != null){
+            randomized = savedInstanceState.getBoolean("randomized")
+            CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
+            bonusGive = savedInstanceState.getBoolean("NotUsedHint")
+        }
+        else{randomized = false}
+
         super.onCreate(savedInstanceState)
+
 
         total = model.totalPreguntas
 
         setContentView(R.layout.activity_main)
+
+
 
         preguntatexto = findViewById(R.id.pregunta)
         Answer1 = findViewById(R.id.boton_1)
@@ -201,23 +310,24 @@ class MainActivity : AppCompatActivity() {
         puntajefinal = findViewById(R.id.puntaje_total)
         hintButton = findViewById(R.id.test_act)
         preguntatexto.text = model.textoPreguntaActual
-
-        configureImageByCategory(model.categoria)
+        hint_text = findViewById(R.id.hints)
+        streak_text = findViewById(R.id.streak)
 
         randomizeQuestionOrder()
 
+
         Answer1.setOnClickListener {
-            checkAnswer(Answer1.text.toString())
+            checkAnswer(Answer1)
         }
         Answer2.setOnClickListener {
-            checkAnswer(Answer2.text.toString())
+            checkAnswer(Answer2)
         }
 
         Answer3.setOnClickListener {
-            checkAnswer(Answer3.text.toString())
+            checkAnswer(Answer3)
         }
         Answer4.setOnClickListener {
-            checkAnswer(Answer4.text.toString())
+            checkAnswer(Answer4)
         }
 
         hintButton.setOnClickListener { _ ->
@@ -229,6 +339,8 @@ class MainActivity : AppCompatActivity() {
             preguntatexto.text = model.textoPreguntaActual
             nextButton.visibility = View.INVISIBLE
             prevButton.visibility = View.INVISIBLE
+            randomized = false
+            CurrentAnswers.clear()
             randomizeQuestionOrder()
         }
         prevButton.setOnClickListener { _ ->
@@ -236,62 +348,43 @@ class MainActivity : AppCompatActivity() {
             preguntatexto.text = model.textoPreguntaActual
             prevButton.visibility = View.INVISIBLE
             nextButton.visibility = View.INVISIBLE
+            randomized = false
+            CurrentAnswers.clear()
             randomizeQuestionOrder()
         }
-
-
-        preguntatexto.setOnClickListener { _ ->
-            val intent = Intent(this, Pista::class.java)
-            intent.putExtra(HINTACTIVITY_EXTRA_ANSWER, model.respuestaPreguntaActual)
-            startActivityForResult(intent, HINTACTIVITY_REQUEST_CODE)
-        }
-
    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            HINTACTIVITY_REQUEST_CODE ->
-                when (resultCode) {
-                    RESULT_OK ->
-                        Toast.makeText(
-                            this,
-                            "¡HINT: ${data!!.getStringExtra(HINTACTIVITY_EXTRA_ANSWER)}!",
-                            Toast.LENGTH_SHORT
-                        ).show()
 
-                    RESULT_CANCELED -> Toast.makeText(
-                        this,
-                        "¡ACTIVITY CERRADO!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-        }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d("QUIZAPP_DEBUG", "onSaveInstanceState: saving state")
+        outState.putInt("REMAINING_HINTS", remainingHints)
+        outState.putString("DIFICULTY", dificulty)
+        outState.putInt("PUNTAJE", puntaje)
+        outState.putInt("ANSWERED", answered)
+        outState.putInt("TOTAL", total)
+        outState.putInt("STREAK", streak)
+        outState.putBoolean("randomized", randomized)
+        outState.putStringArrayList("answers", CurrentAnswers)
+        outState.putBoolean("NotUsedHint", bonusGive)
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("QUIZAPP_DEBUG", "onStart()...")
-    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        remainingHints = savedInstanceState.getInt("REMAINING_HINTS")
+        dificulty = savedInstanceState.getString("DIFICULTY", "Normal")
+        puntaje = savedInstanceState.getInt("PUNTAJE")
+        answered = savedInstanceState.getInt("ANSWERED")
+        total = savedInstanceState.getInt("TOTAL")
+        streak = savedInstanceState.getInt("STREAK")
+        randomized = savedInstanceState.getBoolean("randomized")
+        CurrentAnswers = savedInstanceState.getStringArrayList("answers")!!
+        bonusGive = savedInstanceState.getBoolean("NotUsedHint")
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("QUIZAPP_DEBUG", "onResume()...")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("QUIZAPP_DEBUG", "onPause()...")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("QUIZAPP_DEBUG", "onStop()...")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("QUIZAPP_DEBUG", "onDestroy()...")
+        mostrarHints()
+        mostrarPuntajeTotal()
+        mostrarStreak()
     }
 }
 
