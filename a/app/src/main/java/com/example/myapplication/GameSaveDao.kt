@@ -11,25 +11,25 @@ interface GameSaveDao{
 
 
     @Insert
-    fun insertpregunta(preguntasrespondidas: GameSave)
+    fun insertsave(preguntasrespondidas: GameSave)
 
 
     @Insert
-    fun insertpreguntas(preguntasrespondidas1: GameSave, preguntasrespondidas2: GameSave)
+    fun insertsaves(preguntasrespondidas1: GameSave, preguntasrespondidas2: GameSave)
 
     @Update
-    fun updatepreguntas(preguntasRespondidas: Array<GameSave>)
+    fun updatesave(preguntasRespondidas: Array<GameSave>)
 
 
     @Update
-    fun updateMorepreguntas(vararg preguntasrespondidas: GameSave)
+    fun updatesaves(vararg preguntasrespondidas: GameSave)
 
     @Delete
-    fun deletepreguntas(preguntasrespondidas: GameSave)
+    fun deletesave(preguntasrespondidas: GameSave)
 
 
     @Delete
-    fun deletepreguntas(preguntasrespondidas:List<GameSave>)
+    fun deletesaves(preguntasrespondidas:List<GameSave>)
 
 
 

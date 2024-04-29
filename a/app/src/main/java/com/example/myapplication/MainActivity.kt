@@ -100,9 +100,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(dificulty == "Normal"){
-            while(totalRespuestas[0] == totalRespuestas[1]){
+            while(totalRespuestas.size < 2 || totalRespuestas[0] == totalRespuestas[1]){
                 totalRespuestas.clear()
-                totalRespuestas.add(model.otrasRespuestas.random()) && totalRespuestas.add(model.otrasRespuestas.random())
+                totalRespuestas.add(model.otrasRespuestas.random())
+                totalRespuestas.add(model.otrasRespuestas.random())
             }
         }
 
